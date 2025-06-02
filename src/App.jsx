@@ -11,8 +11,18 @@ function App() {
   return (
     <div>
       <NavBar />
-      <h1>Animal Shop</h1>
-      <p></p>
+      <div>
+        <h1>Hello from the main page of the app!</h1>
+        <p>Here are some examples of links to other pages</p>
+        <nav>
+          <ul>
+            <li>
+              <Link to="profile">Profile page</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
       <nav>
         <ul>
           <li>

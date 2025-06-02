@@ -5,19 +5,36 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 import { NavBar } from "./navBar";
-import Categories from "./categories.jsx";
+import Shop from "./shop.jsx";
 import { Default } from "./default.jsx";
 import { Cats } from "./categories/cats.jsx";
 import { Dogs } from "./categories/dogs.jsx";
+import Profile from "./profile.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
+  { path: "profile", element: <Profile /> },
+
   {
-    path: "categories/:name",
-    element: <Categories />,
+    path: "shop",
+    element: <Shop />,
+    children: [
+      {
+        path: "cats",
+        element: <Cats />,
+      },
+      {
+        path: "dogs",
+        element: <Dogs />,
+      },
+    ],
   },
+  // {
+  //   path: "categories/:name",
+  //   element: <Categories />,
+  // },
   // {
   //   path: "categories",
   //   element: <Categories />,
