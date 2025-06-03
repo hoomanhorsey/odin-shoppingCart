@@ -4,12 +4,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./index.css";
 import App from "./App.jsx";
-import { NavBar } from "./navBar";
 import Shop from "./shop.jsx";
-import { Default } from "./default.jsx";
 import { Cats } from "./categories/cats.jsx";
 import { Dogs } from "./categories/dogs.jsx";
+import Cart from "./cart.jsx";
 import Profile from "./profile.jsx";
+
+import { Item } from "./products/item.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       {
         path: "cats",
         element: <Cats />,
+        children: [{ path: "item", element: <Item /> }],
       },
       {
         path: "dogs",
@@ -31,6 +33,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "cart", element: <Cart /> },
   // {
   //   path: "categories/:name",
   //   element: <Categories />,

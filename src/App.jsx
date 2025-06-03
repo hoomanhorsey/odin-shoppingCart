@@ -12,33 +12,25 @@ function App() {
     <div>
       <NavBar />
       <div>
-        <h1>Hello from the main page of the app!</h1>
-        <p>Here are some examples of links to other pages</p>
+        <h1>Consumer Purchase Site</h1>
+        <div>
+          <img
+            src="src/assets/images/WhiskeyStairs.jpeg"
+            alt="Whiskey cat on the stairs"
+          />
+        </div>
+
         <nav>
-          <ul>
+          <ul className=" mainNavUL">
             <li>
-              <Link to="profile">Profile page</Link>
+              <Link to="/shop/cats">Shop Cats</Link>
+            </li>
+            <li>
+              <Link to="/shop/dogs">Shop Dogs</Link>
             </li>
           </ul>
         </nav>
       </div>
-
-      <nav>
-        <ul>
-          <li>
-            <Link to="categories">Shop by Categories</Link>
-          </li>
-        </ul>
-
-        {/* <ul>
-          <li>
-            <Link to="cats">Cats page</Link>
-          </li>
-          <li>
-            <Link to="dogs">Dog page</Link>
-          </li>
-        </ul> */}
-      </nav>
     </div>
   );
 }

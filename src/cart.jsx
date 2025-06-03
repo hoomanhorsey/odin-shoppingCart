@@ -4,19 +4,19 @@ import { NavBar } from "./navBar";
 
 import { Link } from "react-router-dom";
 
-import { Default } from "./default";
-
-const Shop = () => {
+const Cart = () => {
   const { name } = useParams();
 
   return (
     <div>
       <NavBar />
 
-      {/* {name === "cats" ? <Cats /> : name === "dogs" ? <Dogs /> : <Default />} */}
+      <h1>Shopping Cart</h1>
+
+      <div>This is the shopping cart</div>
       <Outlet />
     </div>
   );
 };
 
-export default Shop;
+export default Cart;
