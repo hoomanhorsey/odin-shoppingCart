@@ -17,7 +17,25 @@ async function fetchData() {
   }
 }
 
-function getProductArray(apiEndpoint, fetchData) {
+function getNewProductArray(apiEndpoint, setNewProductArray) {
+  console.log("getProductArray called", apiEndpoint);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(apiEndpoint);
+      const data = await response.json();
+      setNewProductArray(data);
+      console.log(data);
+    }
+
+    fetchData();
+  }, []);
+  console.table(newProductArray);
+
+  // return newProductArray;
+}
+
+function getProductArray(apiEndpoint) {
   console.log("getProductArray called", apiEndpoint);
 
   const [productArray, setProductArray] = useState([]);
@@ -36,4 +54,4 @@ function getProductArray(apiEndpoint, fetchData) {
   return productArray;
 }
 
-export { getProductArray };
+export { getProductArray, getNewProductArray };

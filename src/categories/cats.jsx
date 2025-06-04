@@ -1,18 +1,30 @@
 import { useState, useEffect } from "react";
 
+import { useParams } from "react-router-dom";
+
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
-import { getProductArray } from "../code/apiHelpers";
+import { getProductArray, getNewProductArray } from "../code/apiHelpers";
 
 function Cats() {
-  // const [productArray, setProductArray] = useState("boo");
+  const { name } = useParams();
 
   const [data, setData] = useState(null); // To store fetched data
 
+  const [newProductArray, setNewProductArray] = useState([]);
+
+  // setNewProductArray(
+  //   getNewProductArray("https://fakestoreapi.com/products", setNewProductArray)
+  // );
+
+  // const [productArray, setProductArray] = useState(
+  //   getProductArray("https://fakestoreapi.com/products", setProductArray)
+  // );
+
   const productArray = getProductArray("https://fakestoreapi.com/products");
 
-  console.table(productArray);
+  // console.table(productArray);
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
@@ -43,16 +55,18 @@ function Cats() {
 
       <div className="productDisplay">
         {productArray.map((item) => (
-          <div className="productCard" key={item.id}>
-            <div className="productDetails">
-              {item.title} - ${item.price}{" "}
+          <Link to={`/shop/cats/${item.id}`}>
+            <div className="productCard" key={item.id}>
+              <div className="productDetails">
+                {item.title} - ${item.price}{" "}
+              </div>
+              <div>
+                {" "}
+                <img className="productImage" src={item.image}></img>
+              </div>
+              {/* <div className="productDescription">{item.description} </div> */}
             </div>
-            <div>
-              {" "}
-              <img className="productImage" src={item.image}></img>
-            </div>
-            <div className="productDescription">{item.description} </div>
-          </div>
+          </Link>
         ))}
       </div>
 

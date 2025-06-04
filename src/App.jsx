@@ -6,7 +6,7 @@ import "./App.css";
 import { NavBar } from "./navBar";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [cart, setCart] = useState([]);
 
   return (
     <div>
@@ -21,7 +21,7 @@ function App() {
         </div>
 
         <nav>
-          <ul className=" mainNavUL">
+          <ul className="mainNavUL">
             <li>
               <Link to="/shop/cats">Shop Cats</Link>
             </li>
