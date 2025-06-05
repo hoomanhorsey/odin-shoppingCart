@@ -10,13 +10,13 @@ function NavBar() {
             <Link to="/">Home</Link> <span></span>
           </li>
           <li>
-            <Link to="/shop/cats">Cats</Link> <span></span>{" "}
+            <Link to="/cats">Cats</Link> <span></span>{" "}
           </li>
           <li>
-            <Link to="/shop/dogs">Dogs</Link> <span></span>{" "}
+            <Link to="/dogs">Dogs</Link> <span></span>{" "}
           </li>
           <li>
-            <Link to="/shop/other">Other</Link> <span></span>{" "}
+            <Link to="/other">Other</Link> <span></span>{" "}
           </li>
           <li>
             <Link to="/cart">Shopping Cart</Link>

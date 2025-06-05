@@ -1,51 +1,31 @@
 import { useState, useEffect } from "react";
 
-import { useParams } from "react-router-dom";
-
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 import { getProductArray, getNewProductArray } from "../code/apiHelpers";
 
 function Cats() {
-  const { name } = useParams();
+  const parentContext = useOutletContext(); // get cart and setCart
+  const [productArray, setProductArray] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("https://fakestoreapi.com/products");
+      const data = await response.json();
+      setProductArray(data);
+      // console.table(data);
+    }
+    fetchData();
+  }, []);
 
-  const [data, setData] = useState(null); // To store fetched data
+  // const productArray = testData;
+  // const [data, setData] = useState(null); // To store fetched data
 
-  const [newProductArray, setNewProductArray] = useState([]);
+  // const [newProductArray, setNewProductArray] = useState([]);
 
-  // setNewProductArray(
-  //   getNewProductArray("https://fakestoreapi.com/products", setNewProductArray)
-  // );
+  // const productArray = getProductArray("https://fakestoreapi.com/products");
 
-  // const [productArray, setProductArray] = useState(
-  //   getProductArray("https://fakestoreapi.com/products", setProductArray)
-  // );
-
-  const productArray = getProductArray("https://fakestoreapi.com/products");
-
-  // console.table(productArray);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch("https://fakestoreapi.com/products/1");
-
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-
-  //       const result = await response.json();
-  //       setData(result);
-  //     } catch (err) {
-  //       // setError(err.message || "Something went wrong");
-  //     } finally {
-  //       // setLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-  // console.log(data.title);
   return (
     <div>
       <h1>Cat Page</h1>
@@ -55,14 +35,14 @@ function Cats() {
 
       <div className="productDisplay">
         {productArray.map((item) => (
-          <Link to={`/shop/cats/${item.id}`}>
-            <div className="productCard" key={item.id}>
+          <Link to={`/cats/${item.id}`} key={item.id}>
+            <div className="productCard">
               <div className="productDetails">
                 {item.title} - ${item.price}{" "}
               </div>
               <div>
                 {" "}
-                <img className="productImage" src={item.image}></img>
+                <img className="productImageCatalogue" src={item.image}></img>
               </div>
               {/* <div className="productDescription">{item.description} </div> */}
             </div>
@@ -72,9 +52,9 @@ function Cats() {
 
       <div>
         {" "}
-        <Link to="/shop/cats/item">Click on item</Link>
+        <Link to="/cats/item">Click on item</Link>
       </div>
-      <Outlet />
+      <Outlet context={{ ...parentContext, productArray }} />
     </div>
   );
 }
