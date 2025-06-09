@@ -4,8 +4,56 @@ import { useState, useEffect } from "react";
 
 import { useOutletContext } from "react-router-dom";
 
-function ItemDetails() {
-  return <input></input>;
+function ItemDetails({ cart, setCart }) {
+  const [selectedItems, setSelectedItems] = useState(0);
+
+  // const decreaseSelected = () => {
+  //   setSelectedItems((prev) => Math.max(0, Number(prev) - 1));
+  // };
+
+  const decreaseSelected = () => {
+    setSelectedItems((prev) => {
+      const next = Math.max(0, parseInt(prev || "0", 10) - 1);
+      return next.toString();
+    });
+  };
+  // const increaseSelected = () => {
+  //   setSelectedItems((prev) => Number(prev) + 1);
+  // };
+
+  const increaseSelected = () => {
+    setSelectedItems((prev) => {
+      const next = parseInt(prev || "0", 10) + 1;
+      return next.toString();
+    });
+  };
+  const handleChange = (event) => {
+    const value = event.target.value;
+    if (/^\d*$/.test(value)) {
+      setSelectedItems(value);
+    }
+  };
+
+  const addToCart = () => {
+    console.log("add this to your cart");
+    console.log(selectedItems);
+    setCart(selectedItems);
+  };
+  return (
+    <>
+      {" "}
+      <div>
+        <button onClick={decreaseSelected} disabled={selectedItems <= 0}>
+          -
+        </button>
+        <input type="text" value={selectedItems} onChange={handleChange} />
+        <button onClick={increaseSelected}>+</button>
+      </div>
+      <div>
+        <button onClick={addToCart}>Add to Cart</button>
+      </div>
+    </>
+  );
 }
 
 function Item() {
@@ -37,8 +85,8 @@ function Item() {
   return (
     <div className="itemCard">
       <Link to="/cats">[close]</Link>
-      <h1>Item Page</h1>
-      <ItemDetails />
+      <h1>{product.title}</h1>
+      <ItemDetails cart={cart} setCart={setCart} />
       <p>This is the params {itemID}</p>
       <img className="productImageCard" src={product.image}></img>
 

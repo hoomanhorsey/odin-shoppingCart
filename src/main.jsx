@@ -26,9 +26,9 @@ const router = createBrowserRouter([
         path: "dogs",
         element: <Dogs />,
       },
+      { path: "cart", element: <Cart /> },
     ],
   },
-  { path: "cart", element: <Cart /> },
 ]);
 
 createRoot(document.getElementById("root")).render(
