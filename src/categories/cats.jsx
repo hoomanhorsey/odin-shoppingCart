@@ -9,17 +9,13 @@ import { getProductArray, getNewProductArray } from "../code/apiHelpers";
 function Cats() {
   const parentContext = useOutletContext(); // get cart and setCart
   const [productArray, setProductArray] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        console.log("Raw response", response);
-        const data = await response.json();
-        console.log("Parsed data", data);
-        setProductArray(data);
-      } catch (error) {
-        console.error("Fetch error", error); // console.table(data);
-      }
+      const response = await fetch("https://fakestoreapi.com/products");
+      const data = await response.json();
+      setProductArray(data);
+      // console.table(data);
     }
     fetchData();
   }, []);

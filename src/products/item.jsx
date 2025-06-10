@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 import { useOutletContext } from "react-router-dom";
 
-function ItemDetails({ cart, setCart }) {
+function ItemDetails({ cart, setCart, itemID, product }) {
   const [selectedItems, setSelectedItems] = useState(0);
 
   // const decreaseSelected = () => {
@@ -36,8 +36,34 @@ function ItemDetails({ cart, setCart }) {
 
   const addToCart = () => {
     console.log("add this to your cart");
-    console.log(selectedItems);
-    setCart(selectedItems);
+    // console.log(selectedItems, itemID);
+
+    setCart((prevCart) => {
+      const itemExists = prevCart.find((item) => item.itemId === itemID);
+
+      if (itemExists) {
+        return prevCart.map((item) => {
+          if (item.itemId === itemID) {
+            return { ...item, quantity: selectedItems };
+          }
+          return item;
+        });
+      } else {
+        return [
+          ...prevCart,
+          {
+            itemId: itemID,
+            quantity: selectedItems,
+            imageUrl: product.image,
+            title: product.title,
+            price: product.price,
+          },
+        ];
+      }
+    });
+    console.log(selectedItems, itemID);
+
+    // setCart(selectedItems);
   };
   return (
     <>
@@ -74,11 +100,10 @@ function Item() {
         console.error("Fetch error:", error);
       }
     }
-    console.log("hi");
 
     fetchData();
   }, [itemID]);
-
+  console.table(product);
   // const product = productArray.find((item) => item.id === Number(itemID));
 
   if (!product) return <p>Loading...</p>; // ✅ Avoid accessing null
@@ -86,7 +111,12 @@ function Item() {
     <div className="itemCard">
       <Link to="/cats">[close]</Link>
       <h1>{product.title}</h1>
-      <ItemDetails cart={cart} setCart={setCart} />
+      <ItemDetails
+        cart={cart}
+        setCart={setCart}
+        itemID={itemID}
+        product={product}
+      />
       <p>This is the params {itemID}</p>
       <img className="productImageCard" src={product.image}></img>
 

@@ -6,7 +6,7 @@ import "./App.css";
 import { NavBar } from "./navBar";
 
 function App() {
-  const [cart, setCart] = useState([5]);
+  const [cart, setCart] = useState([]);
 
   return (
     <div>

@@ -83,6 +83,11 @@
   width: auto;
 }
 
+.productImageCart {
+  height: 6rem;
+  width: auto;
+}
+
 .itemCard {
   position: fixed;
   top: 80px; /* a bit below the navbar */
@@ -93,7 +98,8 @@
   z-index: 1000;
   /* background-color: rgba(255, 255, 255, 0.95); or semi-transparent */
 
-  background-color: rgba(0, 0, 0, 0.6); /* dark transparent overlay */
+  background-color: grey;
+  /* background-color: rgba(0, 0, 0, 0.9); dark transparent overlay */
   color: white; /* for contrast */
   padding: 2rem;
   overflow: auto;
