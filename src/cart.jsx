@@ -1,24 +1,39 @@
-import { useParams } from "react-router-dom";
-import { Outlet } from "react-router-dom";
-import { NavBar } from "./navBar";
-
 import { useOutletContext } from "react-router-dom";
 
-import { Link } from "react-router-dom";
+const decreaseQuantity = (itemId, setCart) => {
+  setCart((prevCart) => {
+    return prevCart.map((item) => {
+      if (item.itemId === itemId) {
+        if (Number(item.quantity > 0)) {
+          return { ...item, quantity: Number(item.quantity) - 1 };
+        } else {
+          return item;
+        }
+      }
+      return item;
+    });
+  });
+};
 
 const Cart = () => {
   const { cart, setCart } = useOutletContext(); // get cart and setCart
   console.table(cart);
 
-  // cart.map((item) => {
-  //   console.log(item.quantity);
-  //   // return <div>{item}</div>;
-  // });
+  if (cart.length === 0) {
+    return (
+      <div>
+        Y'all ain't bought nuthin' yet. Go back to the catalogue and pick out
+        some nice thangs
+      </div>
+    );
+  }
+
   let total = 0;
 
   return (
     <div>
       <h1>Shopping Cart</h1>
+
       {cart.map((item) => {
         const subtotal = Number(item.price) * Number(item.quantity);
         total += subtotal;
@@ -28,7 +43,7 @@ const Cart = () => {
             <img className="productImageCart" src={item.imageUrl}></img>:
             Quantity:
             <button
-              onClick={() => decreaseQuantity(itemId)}
+              onClick={() => decreaseQuantity(item.itemId, setCart)}
               // disabled={selectedItems <= 0}
             >
               -

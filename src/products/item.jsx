@@ -6,7 +6,6 @@ import { useOutletContext } from "react-router-dom";
 
 function ItemDetails({ cart, setCart, itemId, product }) {
   const decreaseQuantity = () => {
-    console.log(itemId);
     setCart((prevCart) => {
       return prevCart.map((item) => {
         if (item.itemId === itemId) {
