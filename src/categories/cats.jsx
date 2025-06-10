@@ -51,10 +51,6 @@ function Cats() {
         ))}
       </div>
 
-      <div>
-        {" "}
-        <Link to="/cats/item">Click on item</Link>
-      </div>
       <Outlet context={{ ...parentContext, productArray }} />
     </div>
   );

@@ -26,7 +26,17 @@ const Cart = () => {
           <div key={item.itemId}>
             {item.title}{" "}
             <img className="productImageCart" src={item.imageUrl}></img>:
-            Quantity: {item.quantity} Price ${item.price} Subtotal $
+            Quantity:
+            <button
+              onClick={() => decreaseQuantity(itemId)}
+              // disabled={selectedItems <= 0}
+            >
+              -
+            </button>
+            <input value={item.quantity} />{" "}
+            <button onClick={() => increaseQuantity(itemId)}>+</button>
+            {/* {item.quantity} */}
+            Price ${item.price} Subtotal $
             {Number(item.price) * Number(item.quantity)}
           </div>
         );

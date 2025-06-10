@@ -4,12 +4,40 @@ import { useState, useEffect } from "react";
 
 import { useOutletContext } from "react-router-dom";
 
-function ItemDetails({ cart, setCart, itemID, product }) {
-  const [selectedItems, setSelectedItems] = useState(0);
+function ItemDetails({ cart, setCart, itemId, product }) {
+  const decreaseQuantity = () => {
+    console.log(itemId);
+    setCart((prevCart) => {
+      return prevCart.map((item) => {
+        if (item.itemId === itemId) {
+          if (Number(item.quantity > 0)) {
+            return { ...item, quantity: Number(item.quantity) - 1 };
+          } else {
+            return item;
+          }
+        }
+        return item;
+      });
+    });
+  };
+  ////////////////////////////
 
-  // const decreaseSelected = () => {
-  //   setSelectedItems((prev) => Math.max(0, Number(prev) - 1));
-  // };
+  const increaseQuantity = () => {
+    console.log(itemId);
+
+    if (!checkIfItemExists(cart, itemId)) {
+      console.log("need to create a new one");
+      addNewItemToCart(itemId);
+    }
+    setCart((prevCart) => {
+      return prevCart.map((item) => {
+        if (item.itemId === itemId) {
+          return { ...item, quantity: Number(item.quantity) + 1 };
+        }
+        return item;
+      });
+    });
+  };
 
   const decreaseSelected = () => {
     setSelectedItems((prev) => {
@@ -17,9 +45,7 @@ function ItemDetails({ cart, setCart, itemID, product }) {
       return next.toString();
     });
   };
-  // const increaseSelected = () => {
-  //   setSelectedItems((prev) => Number(prev) + 1);
-  // };
+  ////////////////////////////////
 
   const increaseSelected = () => {
     setSelectedItems((prev) => {
@@ -27,23 +53,50 @@ function ItemDetails({ cart, setCart, itemID, product }) {
       return next.toString();
     });
   };
-  const handleChange = (event) => {
+
+  const handleQuantityChange = (event, itemId) => {
     const value = event.target.value;
     if (/^\d*$/.test(value)) {
-      setSelectedItems(value);
+      setCart((prevCart) => {
+        return prevCart.map((item) => {
+          if (item.itemId === itemId) {
+            return { ...item, quantity: value };
+          }
+          return item;
+        });
+      });
     }
+    console.log(value);
   };
 
+  const addNewItemToCart = (itemId) => {
+    console.log("created a new one!");
+    setCart((prevCart) => {
+      return [
+        ...prevCart,
+        {
+          itemId: itemId,
+          quantity: 0,
+          imageUrl: product.image,
+          title: product.title,
+          price: product.price,
+        },
+      ];
+    });
+  };
+
+  const checkIfItemExists = (cart, itemId) => {
+    return cart.find((item) => item.itemId === itemId);
+  };
   const addToCart = () => {
     console.log("add this to your cart");
-    // console.log(selectedItems, itemID);
 
     setCart((prevCart) => {
-      const itemExists = prevCart.find((item) => item.itemId === itemID);
+      const itemExists = prevCart.find((item) => item.itemId === itemId);
 
       if (itemExists) {
         return prevCart.map((item) => {
-          if (item.itemId === itemID) {
+          if (item.itemId === itemId) {
             return { ...item, quantity: selectedItems };
           }
           return item;
@@ -52,7 +105,7 @@ function ItemDetails({ cart, setCart, itemID, product }) {
         return [
           ...prevCart,
           {
-            itemId: itemID,
+            itemId: itemId,
             quantity: selectedItems,
             imageUrl: product.image,
             title: product.title,
@@ -61,37 +114,48 @@ function ItemDetails({ cart, setCart, itemID, product }) {
         ];
       }
     });
-    console.log(selectedItems, itemID);
-
-    // setCart(selectedItems);
   };
+
+  const existingItem = cart.find((item) => item.itemId === itemId);
+  const quantityInCart = existingItem ? existingItem.quantity : 0;
+
   return (
     <>
-      {" "}
       <div>
-        <button onClick={decreaseSelected} disabled={selectedItems <= 0}>
+        <button
+          onClick={() => decreaseQuantity(itemId)}
+          // disabled={selectedItems <= 0}
+        >
           -
         </button>
-        <input type="text" value={selectedItems} onChange={handleChange} />
-        <button onClick={increaseSelected}>+</button>
+
+        <input
+          type="text"
+          value={quantityInCart}
+          onChange={(event) => handleQuantityChange(event, itemId)}
+        />
+
+        <button onClick={() => increaseQuantity(itemId)}>+</button>
       </div>
-      <div>
-        <button onClick={addToCart}>Add to Cart</button>
-      </div>
+
+      <h2>
+        Sub Total: $
+        {!existingItem ? 0 : (quantityInCart * existingItem.price).toFixed(2)}
+      </h2>
     </>
   );
 }
 
 function Item() {
   const { cart, setCart, productArray } = useOutletContext();
-  const { itemID } = useParams();
+  const { itemId } = useParams();
 
   const [product, setProduct] = useState(null);
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `https://fakestoreapi.com/products/${itemID}`
+          `https://fakestoreapi.com/products/${itemId}`
         );
         if (!response.ok) throw new Error("Fetch failed");
         const data = await response.json();
@@ -102,27 +166,27 @@ function Item() {
     }
 
     fetchData();
-  }, [itemID]);
+  }, [itemId]);
   console.table(product);
   // const product = productArray.find((item) => item.id === Number(itemID));
 
   if (!product) return <p>Loading...</p>; // ✅ Avoid accessing null
   return (
     <div className="itemCard">
-      <Link to="/cats">[close]</Link>
+      <Link to="/cats">[return to shopping]</Link>
       <h1>{product.title}</h1>
+      <h2>${product.price}</h2>
       <ItemDetails
         cart={cart}
         setCart={setCart}
-        itemID={itemID}
+        itemId={itemId}
         product={product}
       />
-      <p>This is the params {itemID}</p>
       <img className="productImageCard" src={product.image}></img>
 
       <p>{product.description}</p>
       <p>
-        <Link to="/cats">[close]</Link>
+        <Link to="/cats">[return to shopping]</Link>
       </p>
     </div>
   );
