@@ -8,8 +8,9 @@ import { increaseQuantity, decreaseQuantity } from "../code/cartHelpers";
 
 import { fetchAndAddNewItem } from "../code/cartHelpers";
 
-function ItemDetails({ cart, setCart, itemId }) {
+function ItemDetails({ cart, setCart, itemId, product }) {
   console.log(itemId);
+  console.log(product);
   const activeProduct = cart.find((item) => item.itemId === itemId);
   console.table(activeProduct);
   const quantityInCart = activeProduct ? activeProduct.quantity : 0;
@@ -121,8 +122,8 @@ function ItemDetails({ cart, setCart, itemId }) {
       </div> */}
 
       <h2>
-        Sub Total: $
-        {!activeProduct ? 0 : (tempQuantity * activeProduct.price).toFixed(2)}
+        Sub Total: ${(tempQuantity * product.price).toFixed(2)}
+        {/* {!activeProduct ? 0 : (tempQuantity * product.price).toFixed(2)} */}
       </h2>
     </>
   );

@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <NavBar />
+      <NavBar cart={cart} />
       <Outlet context={{ cart, setCart }} />
     </div>
   );
