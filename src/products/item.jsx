@@ -6,7 +6,20 @@ import { useOutletContext } from "react-router-dom";
 
 import { increaseQuantity, decreaseQuantity } from "../code/cartHelpers";
 
-function ItemDetails({ cart, setCart, itemId, product }) {
+import { fetchAndAddNewItem } from "../code/cartHelpers";
+
+function ItemDetails({ cart, setCart, itemId }) {
+  console.log(itemId);
+  const activeProduct = cart.find((item) => item.itemId === itemId);
+  console.table(activeProduct);
+  const quantityInCart = activeProduct ? activeProduct.quantity : 0;
+  const [tempQuantity, setTempQuantity] = useState(quantityInCart);
+
+  // Optional: Sync tempQuantity if itemId changes
+  // useEffect(() => {
+  //   setTempQuantity(activeProduct ? activeProduct.quantity : 0);
+  // }, [itemId, cart]);
+
   const handleQuantityChange = (event, itemId) => {
     const value = event.target.value;
     if (/^\d*$/.test(value)) {
@@ -22,65 +35,67 @@ function ItemDetails({ cart, setCart, itemId, product }) {
     console.log("called from inside module");
   };
 
-  const handleChange = (event) => {
-    const value = event.target.value;
-    if (/^\d*$/.test(value)) {
-      setSelectedItems(value);
+  const handleSubtract = () => setTempQuantity((prev) => Math.max(0, prev - 1));
+
+  const handleAdd = () => setTempQuantity((prev) => prev + 1);
+
+  const handleSubmit = async () => {
+    console.log("subbed");
+    const itemExists = cart.some((item) => item.itemId === itemId);
+
+    if (!itemExists) {
+      console.log("need to make new item");
+      await fetchAndAddNewItem(itemId, setCart);
+      setCart((prevCart) => {
+        console.log(prevCart);
+        return prevCart.map((item) => {
+          if (item.itemId === itemId) {
+            return { ...item, quantity: tempQuantity };
+          }
+          return item;
+        });
+      });
+    } else {
+      setCart((prevCart) => {
+        console.log(prevCart);
+        return prevCart.map((item) => {
+          if (item.itemId === itemId) {
+            return { ...item, quantity: tempQuantity };
+          }
+
+          return item;
+        });
+      });
     }
   };
 
-  // const addNewItemToCart = (itemId) => {
-  //   console.log("created a new one!");
-  //   setCart((prevCart) => {
-  //     return [
-  //       ...prevCart,
-  //       {
-  //         itemId: itemId,
-  //         quantity: 0,
-  //         imageUrl: product.image,
-  //         title: product.title,
-  //         price: product.price,
-  //       },
-  //     ];
-  //   });
-  // };
-
-  // const checkIfItemExists = (cart, itemId) => {
-  //   return cart.find((item) => item.itemId === itemId);
-  // };
-  // const addToCart = () => {
-  //   console.log("add this to your cart");
-
-  //   setCart((prevCart) => {
-  //     const itemExists = prevCart.find((item) => item.itemId === itemId);
-
-  //     if (itemExists) {
-  //       return prevCart.map((item) => {
-  //         if (item.itemId === itemId) {
-  //           return { ...item, quantity: selectedItems };
-  //         }
-  //         return item;
-  //       });
-  //     } else {
-  //       return [
-  //         ...prevCart,
-  //         {
-  //           itemId: itemId,
-  //           quantity: selectedItems,
-  //           imageUrl: product.image,
-  //           title: product.title,
-  //           price: product.price,
-  //         },
-  //       ];
-  //     }
-  //   });
-  // };
-
-  const existingItem = cart.find((item) => item.itemId === itemId);
-  const quantityInCart = existingItem ? existingItem.quantity : 0;
-
   return (
     <>
+      <div>
+        <button
+          className="btnQuantity"
+          onClick={() => handleSubtract()}
+          // disabled={selectedItems <= 0}
+        >
+          -
+        </button>
+
+        <input
+          type="text"
+          className="quantity"
+          value={tempQuantity}
+          onChange={(event) => handleQuantityChange(event, itemId)}
+        />
+
+        <button className="btnQuantity" onClick={() => handleAdd()}>
+          +
+        </button>
+
+        <button className="btnAddToCart" onClick={() => handleSubmit()}>
+          Add to Cart
+        </button>
+      </div>
+      {/* 
       <div>
         <button
           className="btnQuantity"
@@ -103,11 +118,11 @@ function ItemDetails({ cart, setCart, itemId, product }) {
         >
           +
         </button>
-      </div>
+      </div> */}
 
       <h2>
         Sub Total: $
-        {!existingItem ? 0 : (quantityInCart * existingItem.price).toFixed(2)}
+        {!activeProduct ? 0 : (tempQuantity * activeProduct.price).toFixed(2)}
       </h2>
     </>
   );

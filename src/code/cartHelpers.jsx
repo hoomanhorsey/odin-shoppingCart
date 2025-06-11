@@ -28,6 +28,7 @@ const handleAddToCart = async (itemId) => {
 };
 
 const fetchAndAddNewItem = async (itemId, setCart) => {
+  console.log("fetchAnd Add New Item called");
   const product = await fetchProductById(itemId);
   addNewItemToCart(itemId, setCart, product);
 };
@@ -113,4 +114,5 @@ export {
   increaseQuantity,
   handleQuantityChange,
   addNewItemToCart,
+  fetchAndAddNewItem,
 };
