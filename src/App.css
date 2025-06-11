@@ -104,3 +104,15 @@
   padding: 2rem;
   overflow: auto;
 }
+
+.btnAddCart {
+  padding: 0.5rem 1rem;
+  background-color: #3b82f6; /* Tailwind's blue-500 */
+  color: white;
+  border-radius: 0.25rem;
+}
+
+.quantity,
+.btnQuantity {
+  padding: 0.5rem 1rem;
+}

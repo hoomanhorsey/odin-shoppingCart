@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 import { useOutletContext } from "react-router-dom";
 
+import { increaseQuantity } from "../code/cartHelpers";
 function ItemDetails({ cart, setCart, itemId, product }) {
   const decreaseQuantity = () => {
     setCart((prevCart) => {
@@ -21,7 +22,7 @@ function ItemDetails({ cart, setCart, itemId, product }) {
   };
   ////////////////////////////
 
-  const increaseQuantity = () => {
+  const OLDincreaseQuantity = () => {
     console.log(itemId);
 
     if (!checkIfItemExists(cart, itemId)) {
@@ -35,21 +36,6 @@ function ItemDetails({ cart, setCart, itemId, product }) {
         }
         return item;
       });
-    });
-  };
-
-  const decreaseSelected = () => {
-    setSelectedItems((prev) => {
-      const next = Math.max(0, parseInt(prev || "0", 10) - 1);
-      return next.toString();
-    });
-  };
-  ////////////////////////////////
-
-  const increaseSelected = () => {
-    setSelectedItems((prev) => {
-      const next = parseInt(prev || "0", 10) + 1;
-      return next.toString();
     });
   };
 
@@ -122,6 +108,7 @@ function ItemDetails({ cart, setCart, itemId, product }) {
     <>
       <div>
         <button
+          className="btnQuantity"
           onClick={() => decreaseQuantity(itemId)}
           // disabled={selectedItems <= 0}
         >
@@ -130,11 +117,17 @@ function ItemDetails({ cart, setCart, itemId, product }) {
 
         <input
           type="text"
+          className="quantity"
           value={quantityInCart}
           onChange={(event) => handleQuantityChange(event, itemId)}
         />
 
-        <button onClick={() => increaseQuantity(itemId)}>+</button>
+        <button
+          className="btnQuantity"
+          onClick={() => increaseQuantity(itemId, setCart, cart)}
+        >
+          +
+        </button>
       </div>
 
       <h2>
@@ -181,6 +174,11 @@ function Item() {
         itemId={itemId}
         product={product}
       />
+
+      <Link to="/cats" className="btnAddCart">
+        Add to Cart and return to shop
+      </Link>
+
       <img className="productImageCard" src={product.image}></img>
 
       <p>{product.description}</p>
@@ -191,3 +189,19 @@ function Item() {
   );
 }
 export { Item };
+
+// Keeping here to maintain the integer/number checks
+const decreaseSelected = () => {
+  setSelectedItems((prev) => {
+    const next = Math.max(0, parseInt(prev || "0", 10) - 1);
+    return next.toString();
+  });
+};
+////////////////////////////////
+
+const increaseSelected = () => {
+  setSelectedItems((prev) => {
+    const next = parseInt(prev || "0", 10) + 1;
+    return next.toString();
+  });
+};

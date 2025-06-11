@@ -1,19 +1,6 @@
 import { useOutletContext } from "react-router-dom";
 
-const decreaseQuantity = (itemId, setCart) => {
-  setCart((prevCart) => {
-    return prevCart.map((item) => {
-      if (item.itemId === itemId) {
-        if (Number(item.quantity > 0)) {
-          return { ...item, quantity: Number(item.quantity) - 1 };
-        } else {
-          return item;
-        }
-      }
-      return item;
-    });
-  });
-};
+import { increaseQuantity, decreaseQuantity } from "./code/cartHelpers";
 
 const Cart = () => {
   const { cart, setCart } = useOutletContext(); // get cart and setCart
@@ -49,7 +36,9 @@ const Cart = () => {
               -
             </button>
             <input value={item.quantity} />{" "}
-            <button onClick={() => increaseQuantity(itemId)}>+</button>
+            <button onClick={() => increaseQuantity(item.itemId, setCart)}>
+              +
+            </button>
             {/* {item.quantity} */}
             Price ${item.price} Subtotal $
             {Number(item.price) * Number(item.quantity)}

@@ -54,4 +54,34 @@ function getProductArray(apiEndpoint) {
   return productArray;
 }
 
-export { getProductArray, getNewProductArray };
+const fetchProductById = async (id) => {
+  const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+  if (!res.ok) throw new Error("Failed to fetch product");
+  return await res.json();
+};
+
+const getSingleProduct = (itemId) => {
+  console.log("get single product is called");
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `https://fakestoreapi.com/products/${itemId}`
+        );
+        if (!response.ok) throw new Error("Fetch failed");
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
+    }
+
+    fetchData();
+  }, [itemId]);
+};
+export {
+  getProductArray,
+  getNewProductArray,
+  getSingleProduct,
+  fetchProductById,
+};
