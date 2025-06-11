@@ -1,6 +1,10 @@
 import { useOutletContext } from "react-router-dom";
 
-import { increaseQuantity, decreaseQuantity } from "./code/cartHelpers";
+import {
+  increaseQuantity,
+  decreaseQuantity,
+  handleQuantityChange,
+} from "./code/cartHelpers";
 
 const Cart = () => {
   const { cart, setCart } = useOutletContext(); // get cart and setCart
@@ -35,8 +39,17 @@ const Cart = () => {
             >
               -
             </button>
-            <input value={item.quantity} />{" "}
-            <button onClick={() => increaseQuantity(item.itemId, setCart)}>
+            <input
+              type="text"
+              className="quantity"
+              value={item.quantity}
+              onChange={(event) =>
+                handleQuantityChange(event, item.itemId, cart, setCart)
+              }
+            />
+            <button
+              onClick={() => increaseQuantity(item.itemId, setCart, cart)}
+            >
               +
             </button>
             {/* {item.quantity} */}

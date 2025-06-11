@@ -79,6 +79,7 @@
   width: auto;
 }
 .productImageCard {
+  margin: 2rem;
   height: 30rem;
   width: auto;
 }
@@ -107,6 +108,7 @@
 
 .btnAddCart {
   padding: 0.5rem 1rem;
+  margin: 1rem;
   background-color: #3b82f6; /* Tailwind's blue-500 */
   color: white;
   border-radius: 0.25rem;

@@ -27,13 +27,21 @@ const handleAddToCart = async (itemId) => {
   }
 };
 
+const fetchAndAddNewItem = async (itemId, setCart) => {
+  const product = await fetchProductById(itemId);
+  addNewItemToCart(itemId, setCart, product);
+};
+
 const increaseQuantity = async (itemId, setCart, cart) => {
   const itemExists = cart.some((item) => item.itemId === itemId);
 
   if (!itemExists) {
-    let product = await fetchProductById(itemId);
-    addNewItemToCart(itemId, setCart, product);
+    console.log("item doesnexists, add new entry to cart");
+    await fetchAndAddNewItem(itemId, setCart);
+    // let product = await fetchProductById(itemId);
+    // addNewItemToCart(itemId, setCart, product);
   } else {
+    console.log("item exists, add to cart");
     setCart((prevCart) => {
       return prevCart.map((item) => {
         if (item.itemId === itemId) {
@@ -63,6 +71,28 @@ const decreaseQuantity = (itemId, setCart) => {
   });
 };
 
+const handleQuantityChange = async (event, itemId, cart, setCart) => {
+  const itemExists = cart.some((item) => item.itemId === itemId);
+
+  if (!itemExists) {
+    console.log("item doesnexists, add new entry to cart");
+    await fetchAndAddNewItem(itemId, setCart);
+  }
+
+  const value = event.target.value;
+  if (/^\d*$/.test(value)) {
+    setCart((prevCart) => {
+      return prevCart.map((item) => {
+        if (item.itemId === itemId) {
+          return { ...item, quantity: value };
+        }
+        return item;
+      });
+    });
+  }
+  console.log("called from module");
+};
+
 const addNewItemToCart = (itemId, setCart, product) => {
   console.log("created a new one!");
   setCart((prevCart) => {
@@ -78,4 +108,9 @@ const addNewItemToCart = (itemId, setCart, product) => {
     ];
   });
 };
-export { decreaseQuantity, increaseQuantity, addNewItemToCart };
+export {
+  decreaseQuantity,
+  increaseQuantity,
+  handleQuantityChange,
+  addNewItemToCart,
+};

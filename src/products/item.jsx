@@ -4,41 +4,9 @@ import { useState, useEffect } from "react";
 
 import { useOutletContext } from "react-router-dom";
 
-import { increaseQuantity } from "../code/cartHelpers";
+import { increaseQuantity, decreaseQuantity } from "../code/cartHelpers";
+
 function ItemDetails({ cart, setCart, itemId, product }) {
-  const decreaseQuantity = () => {
-    setCart((prevCart) => {
-      return prevCart.map((item) => {
-        if (item.itemId === itemId) {
-          if (Number(item.quantity > 0)) {
-            return { ...item, quantity: Number(item.quantity) - 1 };
-          } else {
-            return item;
-          }
-        }
-        return item;
-      });
-    });
-  };
-  ////////////////////////////
-
-  const OLDincreaseQuantity = () => {
-    console.log(itemId);
-
-    if (!checkIfItemExists(cart, itemId)) {
-      console.log("need to create a new one");
-      addNewItemToCart(itemId);
-    }
-    setCart((prevCart) => {
-      return prevCart.map((item) => {
-        if (item.itemId === itemId) {
-          return { ...item, quantity: Number(item.quantity) + 1 };
-        }
-        return item;
-      });
-    });
-  };
-
   const handleQuantityChange = (event, itemId) => {
     const value = event.target.value;
     if (/^\d*$/.test(value)) {
@@ -51,55 +19,62 @@ function ItemDetails({ cart, setCart, itemId, product }) {
         });
       });
     }
-    console.log(value);
+    console.log("called from inside module");
   };
 
-  const addNewItemToCart = (itemId) => {
-    console.log("created a new one!");
-    setCart((prevCart) => {
-      return [
-        ...prevCart,
-        {
-          itemId: itemId,
-          quantity: 0,
-          imageUrl: product.image,
-          title: product.title,
-          price: product.price,
-        },
-      ];
-    });
+  const handleChange = (event) => {
+    const value = event.target.value;
+    if (/^\d*$/.test(value)) {
+      setSelectedItems(value);
+    }
   };
 
-  const checkIfItemExists = (cart, itemId) => {
-    return cart.find((item) => item.itemId === itemId);
-  };
-  const addToCart = () => {
-    console.log("add this to your cart");
+  // const addNewItemToCart = (itemId) => {
+  //   console.log("created a new one!");
+  //   setCart((prevCart) => {
+  //     return [
+  //       ...prevCart,
+  //       {
+  //         itemId: itemId,
+  //         quantity: 0,
+  //         imageUrl: product.image,
+  //         title: product.title,
+  //         price: product.price,
+  //       },
+  //     ];
+  //   });
+  // };
 
-    setCart((prevCart) => {
-      const itemExists = prevCart.find((item) => item.itemId === itemId);
+  // const checkIfItemExists = (cart, itemId) => {
+  //   return cart.find((item) => item.itemId === itemId);
+  // };
+  // const addToCart = () => {
+  //   console.log("add this to your cart");
 
-      if (itemExists) {
-        return prevCart.map((item) => {
-          if (item.itemId === itemId) {
-            return { ...item, quantity: selectedItems };
-          }
-          return item;
-        });
-      } else {
-        return [
-          ...prevCart,
-          {
-            itemId: itemId,
-            quantity: selectedItems,
-            imageUrl: product.image,
-            title: product.title,
-            price: product.price,
-          },
-        ];
-      }
-    });
-  };
+  //   setCart((prevCart) => {
+  //     const itemExists = prevCart.find((item) => item.itemId === itemId);
+
+  //     if (itemExists) {
+  //       return prevCart.map((item) => {
+  //         if (item.itemId === itemId) {
+  //           return { ...item, quantity: selectedItems };
+  //         }
+  //         return item;
+  //       });
+  //     } else {
+  //       return [
+  //         ...prevCart,
+  //         {
+  //           itemId: itemId,
+  //           quantity: selectedItems,
+  //           imageUrl: product.image,
+  //           title: product.title,
+  //           price: product.price,
+  //         },
+  //       ];
+  //     }
+  //   });
+  // };
 
   const existingItem = cart.find((item) => item.itemId === itemId);
   const quantityInCart = existingItem ? existingItem.quantity : 0;
@@ -109,7 +84,7 @@ function ItemDetails({ cart, setCart, itemId, product }) {
       <div>
         <button
           className="btnQuantity"
-          onClick={() => decreaseQuantity(itemId)}
+          onClick={() => decreaseQuantity(itemId, setCart)}
           // disabled={selectedItems <= 0}
         >
           -
@@ -159,8 +134,6 @@ function Item() {
 
     fetchData();
   }, [itemId]);
-  console.table(product);
-  // const product = productArray.find((item) => item.id === Number(itemID));
 
   if (!product) return <p>Loading...</p>; // ✅ Avoid accessing null
   return (
@@ -174,13 +147,16 @@ function Item() {
         itemId={itemId}
         product={product}
       />
+      <div>
+        {" "}
+        <Link to="/cats" className="btnAddCart">
+          Add item(s) to cart, return to shop
+        </Link>
+      </div>
 
-      <Link to="/cats" className="btnAddCart">
-        Add to Cart and return to shop
-      </Link>
-
-      <img className="productImageCard" src={product.image}></img>
-
+      <div>
+        <img className="productImageCard" src={product.image}></img>
+      </div>
       <p>{product.description}</p>
       <p>
         <Link to="/cats">[return to shopping]</Link>
