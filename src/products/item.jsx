@@ -9,10 +9,7 @@ import { increaseQuantity, decreaseQuantity } from "../code/cartHelpers";
 import { fetchAndAddNewItem } from "../code/cartHelpers";
 
 function ItemDetails({ cart, setCart, itemId, product }) {
-  console.log(itemId);
-  console.log(product);
   const activeProduct = cart.find((item) => item.itemId === itemId);
-  console.table(activeProduct);
   const quantityInCart = activeProduct ? activeProduct.quantity : 0;
   const [tempQuantity, setTempQuantity] = useState(quantityInCart);
 
@@ -76,55 +73,27 @@ function ItemDetails({ cart, setCart, itemId, product }) {
         <button
           className="btnQuantity"
           onClick={() => handleSubtract()}
-          // disabled={selectedItems <= 0}
+          disabled={tempQuantity <= 0}
         >
           -
         </button>
-
         <input
           type="text"
           className="quantity"
           value={tempQuantity}
           onChange={(event) => handleQuantityChange(event, itemId)}
         />
-
         <button className="btnQuantity" onClick={() => handleAdd()}>
           +
         </button>
-
-        <button className="btnAddToCart" onClick={() => handleSubmit()}>
+      </div>
+      <div>
+        <button className="btnAddCart" onClick={() => handleSubmit()}>
           Add to Cart
         </button>
       </div>
-      {/* 
-      <div>
-        <button
-          className="btnQuantity"
-          onClick={() => decreaseQuantity(itemId, setCart)}
-          // disabled={selectedItems <= 0}
-        >
-          -
-        </button>
 
-        <input
-          type="text"
-          className="quantity"
-          value={quantityInCart}
-          onChange={(event) => handleQuantityChange(event, itemId)}
-        />
-
-        <button
-          className="btnQuantity"
-          onClick={() => increaseQuantity(itemId, setCart, cart)}
-        >
-          +
-        </button>
-      </div> */}
-
-      <h2>
-        Sub Total: ${(tempQuantity * product.price).toFixed(2)}
-        {/* {!activeProduct ? 0 : (tempQuantity * product.price).toFixed(2)} */}
-      </h2>
+      <h2>Sub Total: ${(tempQuantity * product.price).toFixed(2)}</h2>
     </>
   );
 }
@@ -151,32 +120,30 @@ function Item() {
     fetchData();
   }, [itemId]);
 
-  if (!product) return <p>Loading...</p>; // ✅ Avoid accessing null
+  if (!product) return <div>Loading...</div>; // ✅ Avoid accessing null
   return (
     <div className="itemCard">
-      <Link to="/cats">[return to shopping]</Link>
-      <h1>{product.title}</h1>
-      <h2>${product.price}</h2>
-      <ItemDetails
-        cart={cart}
-        setCart={setCart}
-        itemId={itemId}
-        product={product}
-      />
       <div>
-        {" "}
-        <Link to="/cats" className="btnAddCart">
-          Add item(s) to cart, return to shop
-        </Link>
+        <Link to="/cats">[return to shopping]</Link>
+      </div>
+      <div>
+        <h1>{product.title}</h1>
+        <h2>${product.price}</h2>
+        <ItemDetails
+          cart={cart}
+          setCart={setCart}
+          itemId={itemId}
+          product={product}
+        />
       </div>
 
       <div>
         <img className="productImageCard" src={product.image}></img>
       </div>
-      <p>{product.description}</p>
-      <p>
+      <div>{product.description}</div>
+      <div>
         <Link to="/cats">[return to shopping]</Link>
-      </p>
+      </div>
     </div>
   );
 }

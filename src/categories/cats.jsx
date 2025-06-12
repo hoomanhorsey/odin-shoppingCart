@@ -30,14 +30,14 @@ function Cats() {
   return (
     <div>
       <h1>Cat Page</h1>
-      <p>
+      <div>
         Cats are lovely aren't they? <Link to="/">Click here to go back</Link>
-      </p>
+      </div>
 
       <div className="productDisplay">
         {productArray.map((item) => (
-          <Link to={`/cats/${item.id}`} key={item.id}>
-            <div className="productCard">
+          <div className="productCard">
+            <Link to={`/cats/${item.id}`} key={item.id}>
               <div className="productDetails">
                 {item.title} - ${item.price}{" "}
               </div>
@@ -46,8 +46,8 @@ function Cats() {
                 <img className="productImageCatalogue" src={item.image}></img>
               </div>
               {/* <div className="productDescription">{item.description} </div> */}
-            </div>
-          </Link>
+            </Link>
+          </div>
         ))}
       </div>
 

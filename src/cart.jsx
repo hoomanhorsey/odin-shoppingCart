@@ -29,32 +29,54 @@ const Cart = () => {
         const subtotal = Number(item.price) * Number(item.quantity);
         total += subtotal;
         return (
-          <div key={item.itemId}>
-            {item.title}{" "}
-            <img className="productImageCart" src={item.imageUrl}></img>:
-            Quantity:
-            <button
-              onClick={() => decreaseQuantity(item.itemId, setCart)}
-              // disabled={selectedItems <= 0}
-            >
-              -
-            </button>
-            <input
-              type="text"
-              className="quantity"
-              value={item.quantity}
-              onChange={(event) =>
-                handleQuantityChange(event, item.itemId, cart, setCart)
-              }
-            />
-            <button
-              onClick={() => increaseQuantity(item.itemId, setCart, cart)}
-            >
-              +
-            </button>
-            {/* {item.quantity} */}
-            Price ${item.price} Subtotal $
-            {Number(item.price) * Number(item.quantity)}
+          <div className="cartItem" key={item.itemId}>
+            <div className="cartItemImage">
+              <img className="productImageCart" src={item.imageUrl}></img>
+            </div>
+            <div className="cartItemDetails">
+              <div className="cartItemDetailsStack">
+                <div className="cartItemDetailsDescription">{item.title}</div>
+                <div className="cartItemDetailsPrice"> Price ${item.price}</div>
+              </div>
+            </div>
+            <div className="cartItemQuantity">
+              <div className="cartItemQuantityStack">
+                <div>Quantity</div>
+                <div className="cartItemQuantityBtns">
+                  <div>
+                    <button
+                      onClick={() => decreaseQuantity(item.itemId, setCart)}
+                      // disabled={selectedItems <= 0}
+                    >
+                      -
+                    </button>
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      className="quantity"
+                      value={item.quantity}
+                      onChange={(event) =>
+                        handleQuantityChange(event, item.itemId, cart, setCart)
+                      }
+                    />
+                  </div>
+                  <div>
+                    <button
+                      onClick={() =>
+                        increaseQuantity(item.itemId, setCart, cart)
+                      }
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  {" "}
+                  Subtotal ${Number(item.price) * Number(item.quantity)}
+                </div>
+              </div>
+            </div>
           </div>
         );
       })}
