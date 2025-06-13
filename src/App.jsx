@@ -11,6 +11,7 @@ function App() {
   return (
     <div>
       <NavBar cart={cart} />
+
       <Outlet context={{ cart, setCart }} />
     </div>
   );

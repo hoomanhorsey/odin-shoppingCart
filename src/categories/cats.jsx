@@ -28,7 +28,7 @@ function Cats() {
   // const productArray = getProductArray("https://fakestoreapi.com/products");
 
   return (
-    <div>
+    <div className="catPage">
       <h1>Cat Page</h1>
       <div>
         Cats are lovely aren't they? <Link to="/">Click here to go back</Link>

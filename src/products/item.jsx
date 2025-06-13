@@ -12,6 +12,7 @@ function ItemDetails({ cart, setCart, itemId, product }) {
   const activeProduct = cart.find((item) => item.itemId === itemId);
   const quantityInCart = activeProduct ? activeProduct.quantity : 0;
   const [tempQuantity, setTempQuantity] = useState(quantityInCart);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Optional: Sync tempQuantity if itemId changes
   // useEffect(() => {
@@ -65,6 +66,8 @@ function ItemDetails({ cart, setCart, itemId, product }) {
         });
       });
     }
+
+    setIsModalOpen(true); // open modal
   };
 
   return (
@@ -94,7 +97,35 @@ function ItemDetails({ cart, setCart, itemId, product }) {
       </div>
 
       <h2>Sub Total: ${(tempQuantity * product.price).toFixed(2)}</h2>
+
+      {/* Modal rendered only if isModalOpen is true */}
+      {isModalOpen && (
+        <AddToCartModal
+          setIsModalOpen={setIsModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        >
+          {/* modal content here */}
+        </AddToCartModal>
+      )}
     </>
+  );
+}
+
+function AddToCartModal({ setIsModalOpen }) {
+  return (
+    <div className="addToCartModal">
+      <div>[quantity] added to your cart </div>
+      <div>[x]</div>
+      <div>Subtoal | [quantity] item(s)</div>
+      <div>
+        <Link to="/cart">View Cart </Link>
+      </div>
+      <div> Continue Shopping</div>
+
+      <button className="btn" onClick={() => setIsModalOpen(false)()}>
+        Add to Cart
+      </button>
+    </div>
   );
 }
 
