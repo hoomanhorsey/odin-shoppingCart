@@ -103,6 +103,8 @@ function ItemDetails({ cart, setCart, itemId, product }) {
         <AddToCartModal
           setIsModalOpen={setIsModalOpen}
           onClose={() => setIsModalOpen(false)}
+          product={product}
+          activeProduct={activeProduct}
         >
           {/* modal content here */}
         </AddToCartModal>
@@ -111,20 +113,22 @@ function ItemDetails({ cart, setCart, itemId, product }) {
   );
 }
 
-function AddToCartModal({ setIsModalOpen }) {
+function AddToCartModal({ setIsModalOpen, product, activeProduct }) {
   return (
-    <div className="addToCartModal">
-      <div>[quantity] added to your cart </div>
-      <div>[x]</div>
-      <div>Subtoal | [quantity] item(s)</div>
-      <div>
-        <Link to="/cart">View Cart </Link>
-      </div>
-      <div> Continue Shopping</div>
+    <div className="modalOverlay">
+      <div className="addToCartModal">
+        <div>[x]</div>
+        <div>[quantity] {activeProduct.quantity} added to your cart </div>
+        <div>Subtoal | [quantity] item(s)</div>
+        <div>
+          <Link to="/cart">View Cart </Link>
+        </div>
+        <div> Continue Shopping</div>
 
-      <button className="btn" onClick={() => setIsModalOpen(false)()}>
-        Add to Cart
-      </button>
+        <button className="btn" onClick={() => setIsModalOpen(false)()}>
+          Return to Item
+        </button>
+      </div>
     </div>
   );
 }
