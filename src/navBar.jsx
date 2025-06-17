@@ -18,13 +18,17 @@ function NavBar({ cart }) {
             <Link to="/">Home</Link> <span></span>
           </li>
           <li>
-            <Link to="/cats">Cats</Link> <span></span>{" "}
+            <Link to="/electronics">Electronics</Link> <span></span>{" "}
           </li>
           <li>
-            <Link to="/dogs">Dogs</Link> <span></span>{" "}
+            <Link to="/jewelery">Jewelery</Link> <span></span>{" "}
           </li>
           <li>
-            <Link to="/other">Other</Link> <span></span>{" "}
+            <Link to="/men%27s%20clothing">Men's Clothing</Link> <span></span>{" "}
+          </li>
+          <li>
+            <Link to="/women%27s%20clothing">Women's Clothing</Link>{" "}
+            <span></span>{" "}
           </li>
           <li>
             <Link to="/cart">Shopping Cart [{cartCalc(cart)}]</Link>

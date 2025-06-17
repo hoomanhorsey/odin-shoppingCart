@@ -11,7 +11,9 @@ import { fetchAndAddNewItem } from "../code/cartHelpers";
 function ItemDetails({ cart, setCart, itemId, product }) {
   const activeProduct = cart.find((item) => item.itemId === itemId);
   const quantityInCart = activeProduct ? activeProduct.quantity : 0;
-  const [tempQuantity, setTempQuantity] = useState(quantityInCart);
+
+  const [tempQuantity, setTempQuantity] = useState(1);
+  // const [tempQuantity, setTempQuantity] = useState(quantityInCart);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Optional: Sync tempQuantity if itemId changes
@@ -34,7 +36,7 @@ function ItemDetails({ cart, setCart, itemId, product }) {
     console.log("called from inside module");
   };
 
-  const handleSubtract = () => setTempQuantity((prev) => Math.max(0, prev - 1));
+  const handleSubtract = () => setTempQuantity((prev) => Math.max(1, prev - 1));
 
   const handleAdd = () => setTempQuantity((prev) => prev + 1);
 
@@ -59,7 +61,8 @@ function ItemDetails({ cart, setCart, itemId, product }) {
         console.log(prevCart);
         return prevCart.map((item) => {
           if (item.itemId === itemId) {
-            return { ...item, quantity: tempQuantity };
+            console.log("added item from temp Quanitty");
+            return { ...item, quantity: tempQuantity + quantityInCart };
           }
 
           return item;
@@ -76,7 +79,7 @@ function ItemDetails({ cart, setCart, itemId, product }) {
         <button
           className="btnQuantity"
           onClick={() => handleSubtract()}
-          disabled={tempQuantity <= 0}
+          disabled={tempQuantity <= 1}
         >
           -
         </button>
@@ -105,6 +108,7 @@ function ItemDetails({ cart, setCart, itemId, product }) {
           onClose={() => setIsModalOpen(false)}
           product={product}
           activeProduct={activeProduct}
+          tempQuantity={tempQuantity}
         >
           {/* modal content here */}
         </AddToCartModal>
@@ -113,18 +117,28 @@ function ItemDetails({ cart, setCart, itemId, product }) {
   );
 }
 
-function AddToCartModal({ setIsModalOpen, product, activeProduct }) {
+function AddToCartModal({
+  setIsModalOpen,
+  product,
+  activeProduct,
+  tempQuantity,
+}) {
   return (
     <div className="modalOverlay">
       <div className="addToCartModal">
-        <div>[x]</div>
-        <div>[quantity] {activeProduct.quantity} added to your cart </div>
-        <div>Subtoal | [quantity] item(s)</div>
+        <button onClick={() => setIsModalOpen(false)} aria-label="Close modal">
+          [x]
+        </button>
+
+        <div>{tempQuantity} item(s) added to your cart </div>
+        <div>{activeProduct.quantity} item(s) in total in your cart </div>
+        <div>Subtotal | [quantity] item(s)</div>
         <div>
           <Link to="/cart">View Cart </Link>
         </div>
-        <div> Continue Shopping</div>
-
+        <button onClick={() => setIsModalOpen(false)} aria-label="Close modal">
+          [Continue Shopping]
+        </button>
         <button className="btn" onClick={() => setIsModalOpen(false)()}>
           Return to Item
         </button>
@@ -159,11 +173,12 @@ function Item() {
   return (
     <div className="itemCard">
       <div>
-        <Link to="/cats">[return to shopping]</Link>
+        <Link to={`/${product.category}`}>[return to shopping]</Link>
       </div>
       <div>
         <h1>{product.title}</h1>
         <h2>${product.price}</h2>
+        <div> {product.category}</div>
         <ItemDetails
           cart={cart}
           setCart={setCart}
