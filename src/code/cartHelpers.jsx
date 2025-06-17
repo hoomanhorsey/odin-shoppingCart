@@ -109,10 +109,17 @@ const addNewItemToCart = (itemId, setCart, product) => {
     ];
   });
 };
+
+function cartCalc(cart) {
+  return cart.reduce((sum, product) => {
+    return sum + product.quantity;
+  }, 0);
+}
 export {
   decreaseQuantity,
   increaseQuantity,
   handleQuantityChange,
   addNewItemToCart,
   fetchAndAddNewItem,
+  cartCalc,
 };

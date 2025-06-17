@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 
-function cartCalc(cart) {
-  return cart.reduce((sum, product) => {
-    return sum + product.quantity;
-  }, 0);
-}
+import { cartCalc } from "./code/cartHelpers";
+// function cartCalc(cart) {
+//   return cart.reduce((sum, product) => {
+//     return sum + product.quantity;
+//   }, 0);
+// }
 
 function NavBar({ cart }) {
   console.log(cartCalc(cart));
@@ -33,14 +34,6 @@ function NavBar({ cart }) {
           <li>
             <Link to="/cart">Shopping Cart [{cartCalc(cart)}]</Link>
           </li>
-          {/* <li>
-          {" "}
-          <Link to="categories/cats">Cats page</Link>
-        </li>
-        <li>
-          {" "}
-          <Link to="dogs">Dog page</Link>
-        </li> */}
         </ul>
       </div>
     </>

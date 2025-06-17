@@ -4,7 +4,11 @@ import { useState, useEffect } from "react";
 
 import { useOutletContext } from "react-router-dom";
 
-import { increaseQuantity, decreaseQuantity } from "../code/cartHelpers";
+import {
+  increaseQuantity,
+  decreaseQuantity,
+  cartCalc,
+} from "../code/cartHelpers";
 
 import { fetchAndAddNewItem } from "../code/cartHelpers";
 
@@ -109,6 +113,7 @@ function ItemDetails({ cart, setCart, itemId, product }) {
           product={product}
           activeProduct={activeProduct}
           tempQuantity={tempQuantity}
+          cart={cart}
         >
           {/* modal content here */}
         </AddToCartModal>
@@ -122,6 +127,7 @@ function AddToCartModal({
   product,
   activeProduct,
   tempQuantity,
+  cart,
 }) {
   return (
     <div className="modalOverlay">
@@ -131,7 +137,7 @@ function AddToCartModal({
         </button>
 
         <div>{tempQuantity} item(s) added to your cart </div>
-        <div>{activeProduct.quantity} item(s) in total in your cart </div>
+        <div>{cartCalc(cart)} item(s) in total in your cart </div>
         <div>Subtotal | [quantity] item(s)</div>
         <div>
           <Link to="/cart">View Cart </Link>

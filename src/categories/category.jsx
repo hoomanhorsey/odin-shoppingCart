@@ -6,6 +6,7 @@ import { useOutletContext } from "react-router-dom";
 
 // import { getProductArray, getNewProductArray } from "../code/apiHelpers";
 import { useParams } from "react-router-dom";
+import { CategoryHeading } from "./categoryHeading";
 
 function Category() {
   const { category } = useParams();
@@ -31,33 +32,36 @@ function Category() {
 
   return (
     <div className="categoryPage">
-      <h1>What dis page Page</h1>
-      <div>Dis be {category}</div>
-      <div>
-        {category} are lovely aren't they?{" "}
-        <Link to="/">Click here to go back</Link>
-      </div>
+      {/* <CategoryHeading category={category} /> */}
 
       {isLoading ? (
         <div className="loading">Loading category...</div>
       ) : (
-        <div className="productDisplay">
-          {productArray.map((item) => (
-            <div className="productCard">
-              <Link to={`/${category}/${item.id}`} key={item.id}>
-                <div className="productDetails">
-                  {item.title} - ${item.price}
-                </div>
-                <div>{item.category}</div>
-                <div>
-                  {" "}
-                  <img className="productImageCatalogue" src={item.image}></img>
-                </div>
-                {/* <div className="productDescription">{item.description} </div> */}
-              </Link>
-            </div>
-          ))}
-        </div>
+        <>
+          <div>
+            <CategoryHeading category={category} />
+          </div>
+
+          <div className="productDisplay">
+            {productArray.map((item) => (
+              <div className="productCard">
+                <Link to={`/${category}/${item.id}`} key={item.id}>
+                  <div className="productDetails">
+                    {item.title} - ${item.price}
+                  </div>
+                  <div>{item.category}</div>
+                  <div>
+                    {" "}
+                    <img
+                      className="productImageCatalogue"
+                      src={item.image}
+                    ></img>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </>
       )}
 
       <Outlet context={{ ...parentContext, productArray }} />
