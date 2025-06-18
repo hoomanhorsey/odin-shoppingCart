@@ -10,8 +10,8 @@
 
 .navBar {
   font-family: "Courier New", Courier, monospace;
-  font-size: 1.5rem;
-  background-color: rgb(233, 174, 174);
+  font-size: 1rem;
+  background-color: pink;
 
   position: fixed;
   top: 0;
@@ -22,6 +22,12 @@
 
   display: grid;
   align-items: center;
+}
+
+.navBarLink{
+ text-decoration: none; /*removes underline */
+background-color: transparent; /* removes background highlight */
+color: inherit; /* optional: makes link color match surrounding text */
 }
 
 .navBarUL {
@@ -46,7 +52,8 @@
   margin: 0;
 }
 
-.categoryPage{
+.categoryPage {
+  padding-top: 5rem;
   /* background-color: rgba(255, 0, 0, 0.5);; */
 }
 
@@ -69,11 +76,14 @@
   border: 2px solid black;
   display: grid;
   grid-template-rows: auto auto;
-  padding: 1rem;
+  padding: 0rem;
   overflow: hidden; /* prevent overflow if needed */
   box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
 
+  text-decoration: none; /*removes underline */
+  background-color: transparent; /* removes background highlight */
+color: inherit; /* optional: makes link color match surrounding text */
 }
 
 /* .productDisplay {
@@ -97,6 +107,11 @@
 .productDetails {
   padding: 2rem;
   font-size: 1.2rem;
+  background-color: rgb(206, 241, 241); 
+}
+
+.productDetailsTitle, .productDetailsPrice{
+padding: .5rem
 }
 
 .productDescription {

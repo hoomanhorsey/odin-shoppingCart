@@ -198,7 +198,7 @@ function Item() {
       </div>
       <div>{product.description}</div>
       <div>
-        <Link to="/cats">[return to shopping]</Link>
+        <Link to={`/${product.category}`}>[return to shopping]</Link>
       </div>
     </div>
   );

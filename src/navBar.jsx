@@ -1,38 +1,43 @@
+// External libraries
 import { Link } from "react-router-dom";
-import { useOutletContext } from "react-router-dom";
 
+// Internal/local modules
 import { cartCalc } from "./code/cartHelpers";
-// function cartCalc(cart) {
-//   return cart.reduce((sum, product) => {
-//     return sum + product.quantity;
-//   }, 0);
-// }
 
 function NavBar({ cart }) {
-  console.log(cartCalc(cart));
   return (
     <>
       <div className="navBar">
         <ul className="navBarUL">
           <li>
-            {" "}
-            <Link to="/">Home</Link> <span></span>
+            <Link className="navBarLink" to="/">
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/electronics">Electronics</Link> <span></span>{" "}
+            <Link className="navBarLink" to="/electronics">
+              Electronics
+            </Link>
           </li>
           <li>
-            <Link to="/jewelery">Jewelery</Link> <span></span>{" "}
+            <Link className="navBarLink" to="/jewelery">
+              Jewelery
+            </Link>
           </li>
           <li>
-            <Link to="/men%27s%20clothing">Men's Clothing</Link> <span></span>{" "}
+            <Link className="navBarLink" to="/men%27s%20clothing">
+              Men's Clothing
+            </Link>
           </li>
           <li>
-            <Link to="/women%27s%20clothing">Women's Clothing</Link>{" "}
-            <span></span>{" "}
+            <Link className="navBarLink" to="/women%27s%20clothing">
+              Women's Clothing
+            </Link>
           </li>
           <li>
-            <Link to="/cart">Shopping Cart [{cartCalc(cart)}]</Link>
+            <Link className="navBarLink" to="/cart">
+              Shopping Cart [{cartCalc(cart)}]
+            </Link>
           </li>
         </ul>
       </div>

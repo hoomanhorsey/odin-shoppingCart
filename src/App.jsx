@@ -1,20 +1,21 @@
+// External libraries
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
-import "./App.css";
-
+// Internal/local modules
 import { NavBar } from "./navBar";
+
+import "./App.css";
 
 function App() {
   const [cart, setCart] = useState([]);
 
   return (
-    <div>
+    <>
       <NavBar cart={cart} />
-
       <Outlet context={{ cart, setCart }} />
-    </div>
+    </>
   );
 }
 
-export default App;
+export { App };
