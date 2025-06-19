@@ -72,14 +72,14 @@ color: inherit; /* optional: makes link color match surrounding text */
   display: grid; /* you can keep this if you want internal layout control */
   /* grid-template-rows: auto 1fr; /* optional if needed */
   /* padding: 1rem; */ */ */
-
   border: 2px solid black;
   display: grid;
   grid-template-rows: auto auto;
   padding: 0rem;
+  padding-top: 5rem;
   overflow: hidden; /* prevent overflow if needed */
   box-sizing: border-box;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+  /* box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px; */
 
   text-decoration: none; /*removes underline */
   background-color: transparent; /* removes background highlight */
