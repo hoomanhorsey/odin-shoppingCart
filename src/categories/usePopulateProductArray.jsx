@@ -1,3 +1,4 @@
+// External libraries
 import { useState, useEffect } from "react";
 
 const productCache = {};
@@ -21,7 +22,7 @@ function usePopulateProductArray(category) {
       try {
         setError(null);
         const response = await fetch(
-          `https://fakestoreapi.com/product/category/${category}`
+          `https://fakestoreapi.com/products/category/${category}`
         );
         // test fetch to trigger errrors
         // const response = await fetch(
@@ -50,8 +51,6 @@ export { usePopulateProductArray };
 
 // Nice, I see you want to keep it conceptual — here are some ideas to improve your hook without diving into code:
 
-//     Error Handling: Add a way for the hook to track and expose any fetch errors. This could help your component display meaningful error messages or fallback UI if the request fails.
-
 //     Cancellation / Cleanup: If the component unmounts before the fetch finishes (or if category changes quickly), add logic to cancel or ignore stale fetch results. This prevents setting state on unmounted components, avoiding memory leaks or warnings.
 
 //     Parameter Validation: Ensure the input parameter (category) is valid before making a request (e.g., non-empty string), which can avoid unnecessary or erroneous fetches.
@@ -66,4 +65,7 @@ export { usePopulateProductArray };
 
 // These enhancements help your hook be more robust, flexible, and ready for edge cases — even if you don't reuse it across components, it makes your codebase healthier and your user experience smoother.
 
+//I've done these ones
+
+//     Error Handling: Add a way for the hook to track and expose any fetch errors. This could help your component display meaningful error messages or fallback UI if the request fails.
 //     Caching: If users switch between categories frequently, you might consider caching results inside the hook or an external store to avoid redundant network calls and improve performance.

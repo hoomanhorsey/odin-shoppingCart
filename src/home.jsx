@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div>
-      <h1>Consumer Purchase Site</h1>
+      <h1>Consumer Purchase Site for Cat related Consumer Items</h1>
       <div>
         <img
           src="src/assets/images/WhiskeyStairs.jpeg"
@@ -14,10 +14,16 @@ function Home() {
       <nav>
         <ul className="mainNavUL">
           <li>
-            <Link to="/cats">Shop Cats</Link>
+            <Link to="/electronics">Shop Electronics</Link>
           </li>
           <li>
-            <Link to="/dogs">Shop Dogs</Link>
+            <Link to="/jewelery">Shop Jewelry</Link>
+          </li>
+          <li>
+            <Link to="/men%27s%20clothing">Shop Men's Fashion</Link>
+          </li>
+          <li>
+            <Link to="/women%27s%20clothing">Shop Women's Fashion</Link>
           </li>
         </ul>
       </nav>

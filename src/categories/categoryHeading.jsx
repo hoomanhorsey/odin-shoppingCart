@@ -4,35 +4,44 @@ function CategoryHeading({ category }) {
       return (
         <>
           <h1>Electronics</h1>
-          <p>Discover the latest gadgets and devices.</p>
+          <p>The latest gadgest and devices for cats.</p>
         </>
       );
     case "jewelery":
       return (
         <>
           <h1>Jewelery</h1>
-          <p>Add some sparkle to your life with our fine selection.</p>
+          <p>A fine selection of stylish jewelery for cats.</p>
         </>
       );
     case "men's clothing":
       return (
         <>
           <h1>Men's Clothing</h1>
-          <p>Dress to impress with our range of men's apparel.</p>
+          <p>
+            Our range of men's apparel has been carefully selected to appeal to
+            cats.
+          </p>
         </>
       );
     case "women's clothing":
       return (
         <>
           <h1>Women's Clothing</h1>
-          <p>Stay stylish with our curated women's collection.</p>
+          <p>
+            Our curated women's collection is fashion forward and approved by
+            cats.
+          </p>
         </>
       );
     default:
       return (
         <>
-          <h1>Products</h1>
-          <p>Explore our full range of quality items.</p>
+          <h1></h1>
+          <p>
+            Click on a category in the navigation bar to explore our quality
+            range of cat related products.
+          </p>
         </>
       );
   }
