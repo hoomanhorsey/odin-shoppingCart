@@ -13,7 +13,7 @@ function ProductDisplay({ category, productArray }) {
             key={item.id}
           >
             <div>
-              <img className="productImageCatalogue" src={item.image}></img>
+              <img className="productImageCatalogue " src={item.image}></img>
             </div>
             <div className="productDetails">
               <div className="productDetailsTitle">{item.title} </div>
