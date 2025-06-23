@@ -132,22 +132,24 @@ function AddToCartModal({
   return (
     <div className="modalOverlay">
       <div className="addToCartModal">
-        <button onClick={() => setIsModalOpen(false)} aria-label="Close modal">
-          [x]
-        </button>
-
-        <div>{tempQuantity} item(s) added to your cart </div>
-        <div>{cartCalc(cart)} item(s) in total in your cart </div>
-        <div>Subtotal | [quantity] item(s)</div>
-        <div>
-          <Link to="/cart">View Cart </Link>
+        <div className="modalText">
+          <div className="modalItem">
+            {tempQuantity} item(s) added to your cart{" "}
+          </div>
+          <div className="modalItem">
+            {cartCalc(cart)} item(s) in total in your cart{" "}
+          </div>
+          <div className="modalItem btnAddCart">
+            <Link to="/cart">View Cart </Link>
+          </div>
+          <button
+            className="modalItem btnAddCart"
+            onClick={() => setIsModalOpen(false)}
+            aria-label="Close modal"
+          >
+            Continue Shopping
+          </button>
         </div>
-        <button onClick={() => setIsModalOpen(false)} aria-label="Close modal">
-          [Continue Shopping]
-        </button>
-        <button className="btn" onClick={() => setIsModalOpen(false)()}>
-          Return to Item
-        </button>
       </div>
     </div>
   );

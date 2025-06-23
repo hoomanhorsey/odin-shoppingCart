@@ -18,7 +18,6 @@ function ProductSort({ setSortStatus }) {
         <option value="priceAscending">Price - Ascending</option>
         <option value="priceDescending">Price - Descending</option>
       </select>
-      _
     </>
   );
 }

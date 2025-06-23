@@ -172,11 +172,13 @@ padding: .5rem
 }
 
 .addToCartModal{
+  display:grid;
+  align-items: center;
   position: fixed;               /* ⬅️ Crucial */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);  /* ⬅️ Center both horizontally & vertically */  width: 70vw;
-  height: 70vh;
+  height: 25vh;
   z-index: 1001;
   background-color: white;      /* Add a background so it's visible */
   padding: 2rem;
@@ -184,6 +186,14 @@ padding: .5rem
   border-radius: 1rem;
 }
 
+.modalText{ display:grid;
+    grid-template-rows: 2fr 2fr 2fr 2fr  
+
+}
+.modalItem {
+  padding: 1rem
+
+}
 .modalOverlay {
   position: fixed;
   top: 0;
