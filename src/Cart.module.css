@@ -19,6 +19,14 @@
   padding: 0.5rem;
 }
 
+.cartItem {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /*  columns, equal width */
+  /* border-width: 1px; */
+  /* border-style: solid; */
+  padding: 1rem 0rem;
+}
+
 .cartItemQuantity {
   display: grid;
   place-items: center; /* shorthand for align-items + justify-items */ /* grid-auto-flow: column; lay items out left-to-right */

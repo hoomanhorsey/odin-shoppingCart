@@ -14,8 +14,8 @@ const Cart = () => {
   let total = 0;
 
   return (
-    <div>
-      <h1>Shopping Cart</h1>
+    <div className="categoryPage">
+      <h1 className="categoryHeading">Shopping Cart</h1>
 
       {cart.length === 0 ? (
         <div>
@@ -28,7 +28,7 @@ const Cart = () => {
             const subtotal = Number(item.price) * Number(item.quantity);
             total += subtotal;
             return (
-              <div className="cartItem" key={item.itemId}>
+              <div className={style.cartItem} key={item.itemId}>
                 <div className={style.cartItemImage}>
                   <img className="productImageCart" src={item.imageUrl}></img>
                 </div>

@@ -8,7 +8,9 @@ import { App } from "./App.jsx";
 import { Cart } from "./Cart.jsx";
 import { Category } from "./components/category.jsx";
 import { Home } from "./home.jsx";
-import { Item } from "./products/item.jsx";
+import { Item } from "./components/Item.jsx";
+
+import "./App.css";
 
 const router = createBrowserRouter([
   {
