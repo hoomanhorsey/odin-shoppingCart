@@ -6,9 +6,10 @@ import {
   handleQuantityChange,
 } from "./code/cartHelpers";
 
+import style from "./Cart.module.css";
+
 const Cart = () => {
   const { cart, setCart } = useOutletContext(); // get cart and setCart
-  console.table(cart);
 
   let total = 0;
 
@@ -28,24 +29,23 @@ const Cart = () => {
             total += subtotal;
             return (
               <div className="cartItem" key={item.itemId}>
-                <div className="cartItemImage">
+                <div className={style.cartItemImage}>
                   <img className="productImageCart" src={item.imageUrl}></img>
                 </div>
-                <div className="cartItemDetails">
-                  <div className="cartItemDetailsStack">
-                    <div className="cartItemDetailsDescription">
+                <div className={style.cartItemDetails}>
+                  <div className={style.cartItemDetailsStack}>
+                    <div className={style.cartItemDetailsDescription}>
                       {item.title}
                     </div>
-                    <div className="cartItemDetailsPrice">
-                      {" "}
+                    <div className={style.cartItemDetailsPrice}>
                       Price ${item.price}
                     </div>
                   </div>
                 </div>
-                <div className="cartItemQuantity">
-                  <div className="cartItemQuantityStack">
+                <div className={style.cartItemQuantity}>
+                  <div className={style.cartItemQuantityStack}>
                     <div>Quantity</div>
-                    <div className="cartItemQuantityBtns">
+                    <div className={style.cartItemQuantityBtns}>
                       <div>
                         <button
                           onClick={() => decreaseQuantity(item.itemId, setCart)}

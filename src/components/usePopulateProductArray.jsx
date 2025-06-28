@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 const productCache = {};
 
 function usePopulateProductArray(category) {
-  console.log("use pop Array called");
   const [isLoading, setIsLoading] = useState(true);
   const [productArray, setProductArray] = useState([]);
   const [error, setError] = useState(null);

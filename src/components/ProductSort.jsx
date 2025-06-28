@@ -9,14 +9,14 @@ function setSort(value, setSortStatus) {
 function ProductSort({ setSortStatus }) {
   return (
     <>
-      <h4>Sort by</h4>
+      <h4>Sort price by</h4>
       <select
         name="sort"
         id="sort"
         onChange={(e) => setSort(e.target.value, setSortStatus)}
       >
-        <option value="priceAscending">Price - Ascending</option>
-        <option value="priceDescending">Price - Descending</option>
+        <option value="priceAscending">Ascending</option>
+        <option value="priceDescending">Descending</option>
       </select>
     </>
   );

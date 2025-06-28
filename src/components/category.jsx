@@ -1,30 +1,24 @@
 // External libraries
-import { useState, useEffect } from "react";
-import { useMemo } from "react";
-import { Link, Outlet, useParams, useOutletContext } from "react-router-dom";
+import { useState } from "react";
+import { Outlet, useParams, useOutletContext } from "react-router-dom";
 
 // Internal/local modules
-import { CategoryHeading } from "./categoryHeading";
-import { Error } from "./error";
-import { ProductDisplay } from "./productDisplay";
-import { ProductSort } from "./productSort";
-import { sortProductArray } from "./sortProductArray";
-import { usePopulateProductArray } from "./usePopulateProductArray";
+import { CategoryHeading } from "./categoryHeading.jsx";
+import { Error } from "./error.jsx";
+import { ProductDisplay } from "./ProductDisplay.jsx";
+import { ProductSort } from "./ProductSort.jsx";
+import { sortProductArray } from "./sortProductArray.jsx";
+import { usePopulateProductArray } from "./usePopulateProductArray.jsx";
 
 function Category() {
   const [sortStatus, setSortStatus] = useState("default");
-
   const { category } = useParams();
-
   const parentContext = useOutletContext(); // get cart and setCart
 
   const { isLoading, productArray, error } = usePopulateProductArray(category);
-  console.log("Category render", category);
   if (error) {
     return <Error error={error} />;
   }
-
-  console.log(sortStatus);
 
   const sortedProductArray = sortProductArray(sortStatus, productArray);
 
@@ -34,7 +28,7 @@ function Category() {
         <div className="loading">Loading {category}...</div>
       ) : (
         <>
-          <div>
+          <div className="categoryHeading">
             <CategoryHeading category={category} />
           </div>
           <div>

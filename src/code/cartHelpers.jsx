@@ -1,20 +1,3 @@
-// const increaseQuantity = (itemId, setCart) => {
-//   console.log(itemId);
-
-//   if (!checkIfItemExists(cart, itemId)) {
-//     console.log("need to create a new one");
-//     addNewItemToCart(itemId);
-//   }
-//   setCart((prevCart) => {
-//     return prevCart.map((item) => {
-//       if (item.itemId === itemId) {
-//         return { ...item, quantity: Number(item.quantity) + 1 };
-//       }
-//       return item;
-//     });
-//   });
-// };
-
 import { getSingleProduct, fetchProductById } from "./apiHelpers";
 
 // inside your click handler or cart logic
@@ -112,6 +95,8 @@ const addNewItemToCart = (itemId, setCart, product) => {
 
 function cartCalc(cart) {
   return cart.reduce((sum, product) => {
+    console.log("cart calc has been called");
+    console.log(sum + product.quantity);
     return sum + product.quantity;
   }, 0);
 }

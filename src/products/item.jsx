@@ -1,23 +1,15 @@
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+// External libraries
+import { Link, useParams, useOutletContext } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import { useOutletContext } from "react-router-dom";
-
-import {
-  increaseQuantity,
-  decreaseQuantity,
-  cartCalc,
-} from "../code/cartHelpers";
-
-import { fetchAndAddNewItem } from "../code/cartHelpers";
+// Internal/local modules
+import { cartCalc, fetchAndAddNewItem } from "../code/cartHelpers";
 
 function ItemDetails({ cart, setCart, itemId, product }) {
   const activeProduct = cart.find((item) => item.itemId === itemId);
   const quantityInCart = activeProduct ? activeProduct.quantity : 0;
 
   const [tempQuantity, setTempQuantity] = useState(1);
-  // const [tempQuantity, setTempQuantity] = useState(quantityInCart);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Optional: Sync tempQuantity if itemId changes

@@ -10,6 +10,8 @@ import "./App.css";
 function App() {
   const [cart, setCart] = useState([]);
 
+  console.log(cart);
+
   return (
     <>
       <NavBar cart={cart} />

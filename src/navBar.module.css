@@ -1,0 +1,26 @@
+.navBar {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1rem;
+  background-color: pink;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; /* or width: 100% */
+  height: 60px; /* or however tall your nav is */
+  z-index: 1000; /* keeps it above other elements */
+
+  display: grid;
+  align-items: center;
+}
+
+.navBarUL {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 3fr; /* custom widths */
+  gap: 2rem;
+
+  list-style: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+  justify-content: space-between; /* Distribute items evenly */
+}

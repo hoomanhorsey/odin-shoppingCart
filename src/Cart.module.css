@@ -1,0 +1,37 @@
+.cartItemImage {
+  padding: 2rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+}
+.cartItemDetails {
+  padding: 2rem 1rem;
+  display: grid;
+  place-items: center; /* shorthand for align-items + justify-items */
+}
+
+.cartItemDetailsStack {
+  display: grid;
+  row-gap: 1rem; /* spacing between the stacked items */
+}
+.cartItemDetailsDescription {
+  padding: 1rem;
+}
+.cartItemDetailsPrice {
+  padding: 0.5rem;
+}
+
+.cartItemQuantity {
+  display: grid;
+  place-items: center; /* shorthand for align-items + justify-items */ /* grid-auto-flow: column; lay items out left-to-right */
+
+  padding: 2rem 1rem;
+}
+
+.cartItemQuantityStack {
+  display: grid;
+  row-gap: 1rem; /* spacing between the stacked items */
+}
+
+.cartItemQuantityBtns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns, equal width */
+}
