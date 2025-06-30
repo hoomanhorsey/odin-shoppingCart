@@ -1,0 +1,28 @@
+.itemCard {
+  position: fixed;
+
+  top: 0; /* start at top */
+  left: 0; /* start at left */
+  width: 100vw; /* full viewport width */
+  height: 100vh; /* full viewport height */
+  z-index: 1000;
+  background-color: white;
+
+  border-radius: 1rem;
+  color: black; /* for contrast */
+  padding: 2rem;
+}
+
+.returnToShoppingLink {
+  padding: 2rem;
+}
+
+.productImageCard {
+  margin: 2rem;
+  height: 30rem;
+  width: auto;
+}
+
+.itemCardProductDescription {
+  font-size: 1.4rem;
+}

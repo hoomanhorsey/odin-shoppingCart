@@ -1,4 +1,33 @@
+.heroImageContainer {
+  position: relative;
+  width: 100%;
+}
+
 .homePageHeroImage {
+  display: block;
+  position: relative;
   padding: 0rem;
   margin: 0rem;
+  width: 100%;
+  height: auto;
+}
+
+.textOverlay {
+  position: absolute;
+  top: 56.6%; /* Adjust as needed */
+  left: 0%;
+  width: 100%;
+
+  color: white;
+  background-color: rgba(17, 226, 253, 0.5); /* semi-transparent black */
+  padding: 2rem;
+  border-radius: 5px;
+  font-size: 4.2rem;
+  max-width: 100%; /* optional */
+  transform: translateY(-0%);
+}
+
+.homeNavBottom {
+  background-color: aquamarine;
+  padding: 2rem;
 }

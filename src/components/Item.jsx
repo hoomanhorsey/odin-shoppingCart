@@ -3,7 +3,8 @@ import { Link, useParams, useOutletContext } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // Internal/local modules
-import { ItemDetailsSep } from "./ItemDetails";
+import { ItemDetails } from "./ItemDetails";
+import style from "./Item.module.css";
 
 function Item() {
   const { cart, setCart, productArray } = useOutletContext();
@@ -29,26 +30,16 @@ function Item() {
 
   if (!product) return <div>Loading...</div>; // ✅ Avoid accessing null
   return (
-    <div className="itemCard">
-      <div>
+    <div className={style.itemCard}>
+      <div className="returnToShoppingLink">
         <Link to={`/${product.category}`}>[return to shopping]</Link>
       </div>
-      <div>
-        <h1>{product.title}</h1>
-        <h2>${product.price}</h2>
-        <div> {product.category}</div>
-        <ItemDetailsSep
-          cart={cart}
-          setCart={setCart}
-          itemId={itemId}
-          product={product}
-        />
-      </div>
-
-      <div>
-        <img className="productImageCard" src={product.image} />
-      </div>
-      <div>{product.description}</div>
+      <ItemDetails
+        cart={cart}
+        setCart={setCart}
+        itemId={itemId}
+        product={product}
+      />
     </div>
   );
 }

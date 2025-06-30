@@ -1,0 +1,25 @@
+.itemDetailsContainer {
+  padding: 4rem;
+}
+
+.itemDetailsTitle {
+  padding: 1rem;
+}
+
+.itemDetailsPrice {
+  padding: 2rem;
+}
+
+.productImageCard {
+  margin: 5rem;
+  height: 30rem;
+  width: auto;
+}
+
+.itemCardProductDescription {
+  font-size: 1.4rem;
+}
+
+.itemDetailsSubTotal {
+  padding: 5rem 0rem 0rem 0rem;
+}

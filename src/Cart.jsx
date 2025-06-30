@@ -38,7 +38,7 @@ const Cart = () => {
                       {item.title}
                     </div>
                     <div className={style.cartItemDetailsPrice}>
-                      Price ${item.price}
+                      Price ${item.price.toFixed(2)}
                     </div>
                   </div>
                 </div>
@@ -48,6 +48,7 @@ const Cart = () => {
                     <div className={style.cartItemQuantityBtns}>
                       <div>
                         <button
+                          className="btnQuantity left"
                           onClick={() => decreaseQuantity(item.itemId, setCart)}
                           // disabled={selectedItems <= 0}
                         >
@@ -57,7 +58,7 @@ const Cart = () => {
                       <div>
                         <input
                           type="text"
-                          className="quantity"
+                          className="inputQuantity"
                           value={item.quantity}
                           onChange={(event) =>
                             handleQuantityChange(
@@ -71,6 +72,7 @@ const Cart = () => {
                       </div>
                       <div>
                         <button
+                          className="btnQuantity right"
                           onClick={() =>
                             increaseQuantity(item.itemId, setCart, cart)
                           }
@@ -81,7 +83,8 @@ const Cart = () => {
                     </div>
                     <div>
                       {" "}
-                      Subtotal ${Number(item.price) * Number(item.quantity)}
+                      Subtotal $
+                      {(Number(item.price) * Number(item.quantity)).toFixed(2)}
                     </div>
                   </div>
                 </div>

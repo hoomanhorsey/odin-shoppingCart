@@ -1,5 +1,6 @@
 .cartItemImage {
-  padding: 2rem 1rem;
+  margin: 2rem;
+  padding: 2rem;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
 }
 .cartItemDetails {

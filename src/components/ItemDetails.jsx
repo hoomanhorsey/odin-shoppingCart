@@ -7,7 +7,9 @@ import { fetchAndAddNewItem } from "../code/cartHelpers";
 
 import { AddToCartModalSep } from "./AddToCartModal";
 
-function ItemDetailsSep({ cart, setCart, itemId, product }) {
+import style from "./ItemDetails.module.css";
+
+function ItemDetails({ cart, setCart, itemId, product }) {
   // Derived values
   const activeProduct = cart.find((item) => item.itemId === itemId);
   const quantityInCart = activeProduct ? activeProduct.quantity : 0;
@@ -40,7 +42,6 @@ function ItemDetailsSep({ cart, setCart, itemId, product }) {
     if (!itemExists) {
       await fetchAndAddNewItem(itemId, setCart);
       setCart((prevCart) => {
-        console.log(prevCart);
         return prevCart.map((item) => {
           if (item.itemId === itemId) {
             return { ...item, quantity: tempQuantity };
@@ -52,7 +53,6 @@ function ItemDetailsSep({ cart, setCart, itemId, product }) {
       setCart((prevCart) => {
         return prevCart.map((item) => {
           if (item.itemId === itemId) {
-            console.log("added item from temp Quanitty");
             return { ...item, quantity: tempQuantity + quantityInCart };
           }
 
@@ -65,45 +65,58 @@ function ItemDetailsSep({ cart, setCart, itemId, product }) {
 
   return (
     <>
-      <div>
-        <button
-          className="btnQuantity"
-          onClick={() => handleSubtract()}
-          disabled={tempQuantity <= 1}
-        >
-          -
-        </button>
-        <input
-          type="text"
-          className="quantity"
-          value={tempQuantity}
-          onChange={(event) => handleQuantityChange(event, itemId)}
-        />
-        <button className="btnQuantity" onClick={() => handleAdd()}>
-          +
-        </button>
-      </div>
-      <div>
-        <button className="btnAddCart" onClick={() => handleSubmit()}>
-          Add to Cart
-        </button>
-      </div>
+      <div className={style.itemDetailsContainer}>
+        <h1 className={style.itemDetailsTitle}>{product.title}</h1>
+        <h2 className={style.itemDetailsPrice}>${product.price.toFixed(2)}</h2>
+        <div>
+          <button
+            className="btnQuantity left"
+            onClick={() => handleSubtract()}
+            disabled={tempQuantity <= 1}
+          >
+            -
+          </button>
+          <input
+            type="text"
+            className="inputQuantity"
+            value={tempQuantity}
+            onChange={(event) => handleQuantityChange(event, itemId)}
+          />
+          <button className="btnQuantity right" onClick={() => handleAdd()}>
+            +
+          </button>
+        </div>
+        <div>
+          <button className="btnAddCart" onClick={() => handleSubmit()}>
+            Add to Cart
+          </button>
+        </div>
 
-      <h2>Sub Total: ${(tempQuantity * product.price).toFixed(2)}</h2>
+        <h2 className={style.itemDetailsSubTotal}>
+          Sub Total: ${(tempQuantity * product.price).toFixed(2)}
+        </h2>
 
-      {/* Modal rendered only if isModalOpen is true */}
-      {isModalOpen && (
-        <AddToCartModalSep
-          setIsModalOpen={setIsModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          product={product}
-          activeProduct={activeProduct}
-          tempQuantity={tempQuantity}
-          cart={cart}
-        ></AddToCartModalSep>
-      )}
+        <div>
+          <img className={style.productImageCard} src={product.image} />
+        </div>
+        <div className={style.itemCardProductDescription}>
+          {product.description}
+        </div>
+
+        {/* Modal rendered only if isModalOpen is true */}
+        {isModalOpen && (
+          <AddToCartModalSep
+            setIsModalOpen={setIsModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            product={product}
+            activeProduct={activeProduct}
+            tempQuantity={tempQuantity}
+            cart={cart}
+          ></AddToCartModalSep>
+        )}
+      </div>
     </>
   );
 }
 
-export { ItemDetailsSep };
+export { ItemDetails };
