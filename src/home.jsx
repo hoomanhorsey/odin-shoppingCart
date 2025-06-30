@@ -14,7 +14,7 @@ function Home() {
       <div className={style.heroImageContainer}>
         <img
           className={style.homePageHeroImage}
-          src="src/assets/images/WhiskeyStairs.jpeg"
+          src="public/images/WhiskeyStairs.jpeg"
           alt="Whiskey cat on the stairs"
         />
 
