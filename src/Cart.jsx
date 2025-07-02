@@ -29,64 +29,46 @@ const Cart = () => {
             total += subtotal;
             return (
               <div className={style.cartItem} key={item.itemId}>
-                <div className={style.cartItemImage}>
-                  <img
-                    className={style.productImageCart}
-                    src={item.imageUrl}
-                  ></img>
-                </div>
+                <img
+                  className={style.productImageCart}
+                  src={item.imageUrl}
+                ></img>
                 <div className={style.cartItemDetails}>
-                  <div className={style.cartItemDetailsStack}>
-                    <div className={style.cartItemDetailsDescription}>
-                      {item.title}
-                    </div>
-                    <div className={style.cartItemDetailsPrice}>
-                      Price ${item.price.toFixed(2)}
-                    </div>
+                  <div className={style.cartItemDetailsDescription}>
+                    {item.title}
+                  </div>
+                  <div className={style.cartItemDetailsPrice}>
+                    Price ${item.price.toFixed(2)}
                   </div>
                 </div>
                 <div className={style.cartItemQuantity}>
-                  <div className={style.cartItemQuantityStack}>
-                    <div>Quantity</div>
-                    <div className={style.cartItemQuantityBtns}>
-                      <div>
-                        <button
-                          className="btnQuantity left"
-                          onClick={() => decreaseQuantity(item.itemId, setCart)}
-                        >
-                          -
-                        </button>
-                      </div>
-                      <div>
-                        <input
-                          type="text"
-                          className="inputQuantity"
-                          value={item.quantity}
-                          onChange={(event) =>
-                            handleQuantityChange(
-                              event,
-                              item.itemId,
-                              cart,
-                              setCart
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <button
-                          className="btnQuantity right"
-                          onClick={() =>
-                            increaseQuantity(item.itemId, setCart, cart)
-                          }
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-                    <div className={style.cartSubtotal}>
-                      Subtotal $
-                      {(Number(item.price) * Number(item.quantity)).toFixed(2)}
-                    </div>
+                  <div>Quantity</div>
+                  <div className={style.cartItemQuantityBtns}>
+                    <button
+                      className="btnQuantity left"
+                      onClick={() => decreaseQuantity(item.itemId, setCart)}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="text"
+                      className="inputQuantity"
+                      value={item.quantity}
+                      onChange={(event) =>
+                        handleQuantityChange(event, item.itemId, cart, setCart)
+                      }
+                    />
+                    <button
+                      className="btnQuantity right"
+                      onClick={() =>
+                        increaseQuantity(item.itemId, setCart, cart)
+                      }
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div className={style.cartSubtotal}>
+                    Subtotal ${subtotal.toFixed(2)}
                   </div>
                 </div>
               </div>
