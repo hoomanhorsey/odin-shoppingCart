@@ -25,21 +25,15 @@ function Category() {
   return (
     <div className="categoryPage">
       {isLoading ? (
-        <div className="loading">Loading {category}...</div>
+        <div className="loading">Loading items...</div>
       ) : (
         <>
-          <div className="categoryHeading">
-            <CategoryHeading category={category} />
-          </div>
-          <div>
-            <ProductSort setSortStatus={setSortStatus} />
-          </div>
-          <div>
-            <ProductDisplay
-              category={category}
-              productArray={sortedProductArray}
-            />
-          </div>
+          <CategoryHeading category={category} />
+          <ProductSort setSortStatus={setSortStatus} />
+          <ProductDisplay
+            category={category}
+            productArray={sortedProductArray}
+          />
         </>
       )}
       <Outlet context={{ ...parentContext, productArray }} />

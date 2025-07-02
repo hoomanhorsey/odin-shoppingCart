@@ -1,15 +1,26 @@
+.homePage {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
 .heroImageContainer {
   position: relative;
   width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  /* max-width: 300px; */
+  /* margin: 0 auto; <-- This centers it */
 }
 
-.homePageHeroImage {
-  display: block;
-  position: relative;
-  padding: 0rem;
-  margin: 0rem;
+.heroImage {
+  height: 100%;
   width: 100%;
-  height: auto;
+  background-image: url("/images/WhiskeyStairsMobile.jpeg");
+  background-size: cover;
+  background-position: center;
+
+  /* padding: 0;
+  margin: 0; */
 }
 
 .textOverlay {
@@ -20,14 +31,73 @@
 
   color: white;
   background-color: rgba(17, 226, 253, 0.5); /* semi-transparent black */
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 5px;
-  font-size: 4.2rem;
+  font-size: 1.2rem;
   max-width: 100%; /* optional */
   transform: translateY(-0%);
 }
 
 .homeNavBottom {
-  background-color: aquamarine;
-  padding: 2rem;
+  padding: 0;
+}
+.homeNavUL {
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+@media (min-width: 1024px) {
+  .heroImageContainer {
+    position: relative;
+    /* width: 100%; */
+    max-width: 1280px;
+    margin: 0 auto; /* <-- This centers it */
+  }
+
+  .heroImage {
+    background-image: url("/images/WhiskeyStairs.jpeg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+  }
+
+  /* .homePageHeroImage {
+    display: block;
+    position: relative;
+    padding: 0rem;
+    margin: 0rem;
+    width: 100%;
+    height: auto;
+  } */
+
+  .textOverlay {
+    position: absolute;
+    top: 56.6%; /* Adjust as needed */
+    left: 0%;
+    width: 100%;
+
+    color: white;
+    background-color: rgba(17, 226, 253, 0.5); /* semi-transparent black */
+    padding: 2rem;
+    border-radius: 5px;
+    font-size: 4.2rem;
+    max-width: 100%; /* optional */
+    transform: translateY(-0%);
+  }
+
+  .homeNavBottom {
+    background-color: aquamarine;
+    padding: 2rem;
+  }
+
+  .homeNavUL {
+    display: flex;
+    gap: 10rem;
+    font-size: 2rem;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+  }
 }

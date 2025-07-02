@@ -30,7 +30,10 @@ const Cart = () => {
             return (
               <div className={style.cartItem} key={item.itemId}>
                 <div className={style.cartItemImage}>
-                  <img className="productImageCart" src={item.imageUrl}></img>
+                  <img
+                    className={style.productImageCart}
+                    src={item.imageUrl}
+                  ></img>
                 </div>
                 <div className={style.cartItemDetails}>
                   <div className={style.cartItemDetailsStack}>
@@ -50,7 +53,6 @@ const Cart = () => {
                         <button
                           className="btnQuantity left"
                           onClick={() => decreaseQuantity(item.itemId, setCart)}
-                          // disabled={selectedItems <= 0}
                         >
                           -
                         </button>
@@ -81,8 +83,7 @@ const Cart = () => {
                         </button>
                       </div>
                     </div>
-                    <div>
-                      {" "}
+                    <div className={style.cartSubtotal}>
                       Subtotal $
                       {(Number(item.price) * Number(item.quantity)).toFixed(2)}
                     </div>
@@ -91,7 +92,7 @@ const Cart = () => {
               </div>
             );
           })}
-          <h2>Total: ${total.toFixed(2)}</h2>
+          <h2 className={style.cartTotal}>Total: ${total.toFixed(2)}</h2>
         </>
       )}
     </div>

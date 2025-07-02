@@ -1,83 +1,46 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
+  height: 100%;
+  padding: 0;
   margin: 0 auto;
-  /* padding: 2rem; */
   text-align: center;
 }
+
 * {
   font-family: "Comic Neue", "Comic Sans MS", cursive, sans-serif;
-  /* font-family: "Courier New", Courier, monospace; */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 .categoryHeading {
-  padding: 4rem;
+  padding: 8rem 0 2rem 0;
 }
+
+.categoryPage {
+  /* max width: 360px;
+  width: 100%; */
+}
+
 a {
   text-decoration: none;
   color: inherit;
 }
 
-select {
-  border: none;
-  outline: none;
-  background: rgb(236, 235, 235);
-  margin: 0.5rem;
-  padding: 0.5rem 0rem 0.5rem 0rem;
-  /* padding: 0.5rem 2.5rem 0.5rem 1rem; */
-}
-
-.homeNavUL {
-  display: flex;
-  gap: 10rem;
-  font-size: 2rem;
-  flex-direction: row;
-  justify-content: center;
-  list-style: none; /* Remove bullet points */
-  padding: 0;
-  margin: 0;
-}
-
-.categoryPage {
-  padding: rem 0rem 0rem 0rem;
-  /* background-color: rgba(255, 0, 0, 0.5);; */
-}
-
-.productDetails,
-.productDescription {
-  /* width: 30rem; */
-}
-
-.productDescription {
+.loading {
   padding: 2rem;
-
-  font-size: 0.8rem;
+  font-size: 1.2rem;
 }
 
-.productImageCart {
-  padding: 2rem;
-  height: 12rem;
-  width: auto;
-}
-
-.btnAddCart {
-  padding: 0.5rem 1rem;
-  margin: 1rem;
-  background-color: #3b82f6; /* Tailwind's blue-500 */
-  color: white;
-  border-radius: 0.25rem;
-}
-
+/* BUTTONS AND INPUTS */
 .inputQuantity,
 .btnQuantity {
-  padding: 0.5rem 1rem;
-  width: 4rem;
-  height: 2rem;
+  font-size: 1rem;
+  /* padding: rem 1rem; */
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .btnQuantity {
-  padding: 0;
   text-align: center;
 }
 
@@ -86,12 +49,12 @@ select {
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
-
 .btnQuantity.right {
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
-
-.loading {
-  padding: 2rem;
+@media (min-width: 1024px) {
+  .categoryHeading {
+    padding: 4rem;
+  }
 }

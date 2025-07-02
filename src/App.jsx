@@ -5,12 +5,8 @@ import { Outlet } from "react-router-dom";
 // Internal/local modules
 import { NavBar } from "./navBar";
 
-import "./App.css";
-
 function App() {
   const [cart, setCart] = useState([]);
-
-  console.log(cart);
 
   return (
     <>

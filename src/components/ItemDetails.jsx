@@ -87,7 +87,7 @@ function ItemDetails({ cart, setCart, itemId, product }) {
           </button>
         </div>
         <div>
-          <button className="btnAddCart" onClick={() => handleSubmit()}>
+          <button className={style.btnAddCart} onClick={() => handleSubmit()}>
             Add to Cart
           </button>
         </div>

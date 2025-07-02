@@ -14,15 +14,29 @@
 }
 
 .returnToShoppingLink {
-  padding: 2rem;
+  padding: 1rem 0rem 0rem 0rem;
 }
+@media (min-width: 1024px) {
+  .returnToShoppingLink {
+    padding: 8rem 0rem 0rem 0rem;
+  }
 
-.productImageCard {
-  margin: 2rem;
-  height: 30rem;
-  width: auto;
-}
+  .itemCard {
+    position: fixed;
 
-.itemCardProductDescription {
-  font-size: 1.4rem;
+    top: 0; /* start at top */
+    left: 0; /* start at left */
+    width: 100vw; /* full viewport width */
+    height: 100vh; /* full viewport height */
+    z-index: 1000;
+    background-color: white;
+
+    border-radius: 1rem;
+    color: black; /* for contrast */
+    padding: 2rem;
+  }
+
+  .returnToShoppingLink {
+    padding: 8rem 0rem 0rem 0rem;
+  }
 }

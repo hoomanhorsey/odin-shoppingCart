@@ -7,7 +7,7 @@ import { ItemDetails } from "./ItemDetails";
 import style from "./Item.module.css";
 
 function Item() {
-  const { cart, setCart, productArray } = useOutletContext();
+  const { cart, setCart } = useOutletContext();
   const { itemId } = useParams();
 
   const [product, setProduct] = useState(null);
@@ -31,7 +31,7 @@ function Item() {
   if (!product) return <div>Loading...</div>; // ✅ Avoid accessing null
   return (
     <div className={style.itemCard}>
-      <div className="returnToShoppingLink">
+      <div className={style.returnToShoppingLink}>
         <Link to={`/${product.category}`}>[return to shopping]</Link>
       </div>
       <ItemDetails

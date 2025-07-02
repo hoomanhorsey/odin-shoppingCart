@@ -33,3 +33,41 @@
 .modalItem {
   padding: 1rem;
 }
+
+@media (min-width: 1024px) {
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4); /* semi-transparent background */
+    z-index: 1999; /* below modal, above .itemCard */
+  }
+  .addToCartModal {
+    display: grid;
+    align-items: center;
+    position: fixed; /* ⬅️ Crucial */
+    top: 50%;
+    left: 50%;
+    transform: translate(
+      -50%,
+      -50%
+    ); /* ⬅️ Center both horizontally & vertically */
+    width: 70vw;
+    height: 35vh;
+    z-index: 1001;
+    background-color: white; /* Add a background so it's visible */
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Optional */
+    border-radius: 1rem;
+  }
+
+  .modalText {
+    display: grid;
+    grid-template-rows: 2fr 2fr 2fr 2fr;
+  }
+  .modalItem {
+    padding: 1rem;
+  }
+}

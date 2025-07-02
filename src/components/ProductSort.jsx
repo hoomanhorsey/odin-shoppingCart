@@ -1,3 +1,5 @@
+import style from "./ProductSort.module.css";
+
 function setSort(value, setSortStatus) {
   if (value === "priceAscending") {
     setSortStatus("priceAscending");
@@ -11,6 +13,7 @@ function ProductSort({ setSortStatus }) {
     <>
       <h4>Sort price by</h4>
       <select
+        className={style.select}
         name="sort"
         id="sort"
         onChange={(e) => setSort(e.target.value, setSortStatus)}

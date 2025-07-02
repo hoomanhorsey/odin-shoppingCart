@@ -20,13 +20,13 @@ function NavBar({ cart }) {
             <Link to="/jewelery">Jewelery</Link>
           </li>
           <li>
-            <Link to="/men%27s%20clothing">Men's Clothing</Link>
+            <Link to="/men%27s%20clothing">Masc Clothes</Link>
           </li>
           <li>
-            <Link to="/women%27s%20clothing">Women's Clothing</Link>
+            <Link to="/women%27s%20clothing">Femme Clothes</Link>
           </li>
           <li>
-            <Link to="/cart">Shopping Cart [{cartCalc(cart)}]</Link>
+            <Link to="/cart">Cart [{cartCalc(cart)}]</Link>
           </li>
         </ul>
       </div>
