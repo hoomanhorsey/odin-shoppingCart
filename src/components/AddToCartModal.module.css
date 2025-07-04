@@ -18,7 +18,7 @@
     -50%
   ); /* ⬅️ Center both horizontally & vertically */
   width: 70vw;
-  height: 35vh;
+  height: 50vh;
   z-index: 1001;
   background-color: white; /* Add a background so it's visible */
   padding: 2rem;

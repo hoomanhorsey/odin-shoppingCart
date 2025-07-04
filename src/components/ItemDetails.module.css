@@ -1,9 +1,22 @@
-.itemCard {
+/* .itemCard {
   width: 100%;
-}
+} */
 
-.itemDetailsContainer {
-  padding: 4rem;
+.itemCard {
+  /* position: fixed; */
+
+  /* top: 0; start at top */
+  /* left: 0; start at left */
+  /* /  width: 100vw; full viewport width */
+  /* height: 100vh; full viewport height */
+  /* z-index: 1000; */
+
+  background-color: hsl(0, 0%, 100%);
+  max-width: 100p0x;
+  border-radius: 1rem;
+  color: black; /* for contrast */
+
+  padding: 8rem 0 0 0;
 }
 
 .itemDetailsTitle {
@@ -25,23 +38,30 @@
   font-size: 0.8rem;
   max-width: 1000px;
   margin: 0 auto;
+  padding: 0 0.5rem;
 }
 
 .itemDetailsSubTotal {
-  padding: 5rem 0rem 0rem 0rem;
-}
-
-.btnAddCart {
-  padding: 0.5rem 1rem;
-  margin: 1rem;
-  background-color: #3b82f6; /* Tailwind's blue-500 */
-  color: white;
-  border-radius: 0.25rem;
+  padding: 1rem 0rem 0rem 0rem;
 }
 
 @media (min-width: 1024px) {
   .itemDetailsContainer {
     padding: 4rem;
+  }
+  .itemCard {
+    position: fixed;
+
+    top: 0; /* start at top */
+    left: 0; /* start at left */
+    width: 100vw; /* full viewport width */
+    height: 100vh; /* full viewport height */
+    z-index: 1000;
+    background-color: white;
+
+    border-radius: 1rem;
+    color: black; /* for contrast */
+    padding: 2rem;
   }
 
   .itemDetailsTitle {

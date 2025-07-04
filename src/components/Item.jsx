@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 
 // Internal/local modules
 import { ItemDetails } from "./ItemDetails";
-import style from "./Item.module.css";
 
 function Item() {
   const { cart, setCart } = useOutletContext();
@@ -30,17 +29,12 @@ function Item() {
 
   if (!product) return <div>Loading...</div>; // ✅ Avoid accessing null
   return (
-    <div className={style.itemCard}>
-      <div className={style.returnToShoppingLink}>
-        <Link to={`/${product.category}`}>[return to shopping]</Link>
-      </div>
-      <ItemDetails
-        cart={cart}
-        setCart={setCart}
-        itemId={itemId}
-        product={product}
-      />
-    </div>
+    <ItemDetails
+      cart={cart}
+      setCart={setCart}
+      itemId={itemId}
+      product={product}
+    />
   );
 }
 export { Item };

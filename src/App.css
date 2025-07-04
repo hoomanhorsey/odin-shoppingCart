@@ -44,6 +44,15 @@ a {
   text-align: center;
 }
 
+.btnAddCart {
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  background-color: #3b9cf6; /* Tailwind's blue-500 */
+  color: white;
+  border-radius: 0.25rem;
+  border: none;
+}
+
 /* Round only the outer corners */
 .btnQuantity.left {
   border-top-left-radius: 0.5rem;

@@ -1,6 +1,7 @@
 // External libraries
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // Internal/local modules
 import { fetchAndAddNewItem } from "../code/cartHelpers";
@@ -65,8 +66,21 @@ function ItemDetails({ cart, setCart, itemId, product }) {
 
   return (
     <>
-      <div className={style.itemDetailsContainer}>
+      <div className={style.itemCard}>
+        <Link
+          className={style.returnToShoppingLink}
+          to={`/${product.category}`}
+        >
+          [return to shopping]
+        </Link>
+
         <h1 className={style.itemDetailsTitle}>{product.title}</h1>
+        <div>
+          <img className={style.productImageCard} src={product.image} />
+        </div>
+        <div className={style.itemCardProductDescription}>
+          {product.description}
+        </div>
         <h2 className={style.itemDetailsPrice}>${product.price.toFixed(2)}</h2>
         <div>
           <button
@@ -87,7 +101,7 @@ function ItemDetails({ cart, setCart, itemId, product }) {
           </button>
         </div>
         <div>
-          <button className={style.btnAddCart} onClick={() => handleSubmit()}>
+          <button className="btnAddCart" onClick={() => handleSubmit()}>
             Add to Cart
           </button>
         </div>
@@ -95,13 +109,6 @@ function ItemDetails({ cart, setCart, itemId, product }) {
         <h2 className={style.itemDetailsSubTotal}>
           Sub Total: ${(tempQuantity * product.price).toFixed(2)}
         </h2>
-
-        <div>
-          <img className={style.productImageCard} src={product.image} />
-        </div>
-        <div className={style.itemCardProductDescription}>
-          {product.description}
-        </div>
 
         {/* Modal rendered only if isModalOpen is true */}
         {isModalOpen && (
